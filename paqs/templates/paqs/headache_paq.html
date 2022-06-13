@@ -1,0 +1,409 @@
+{% load static %}
+    <h1 class="mb-5 text-center">
+        <u>Headache PAQ</u>
+        <p>
+            {{ message }}
+        </p>
+    </h1>
+    {% comment %} <div class="progress">
+    <div class="progress-bar" role="progressbar" style="width: 1%;" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+        1%
+    </div>
+    </div> {% endcomment %}
+    <div class="row" id="progress">
+        <br>
+        <br>
+    </div>
+    <div class="col-lg-12 col-md-12 col-12" style="display:block">
+        <form id="iaq-form"
+              method="POST"
+              enctype="multipart/form-data"
+              autocomplete="off">
+            {% csrf_token %}
+            <h3></h3>
+            <div id="1">
+                <p>
+                    1. Are you service connected for a headache condition?
+                </p>
+                <input type="radio" id="1.yes" name="service_connected" value="yes">
+                <label for="1.yes">YES</label>
+                <br>
+                <input type="radio" id="1.no" name="service_connected" value="no">
+                <label for="1.no">NO</label>
+            </div>
+            <br>
+            <div id="2">
+                <p>
+                    2. Please select which condition you are service-connected for any of the following
+                    headache conditions:
+                </p>
+                <input type="checkbox" id="migraine" name="migraine" value="migraine">
+                <label for="migraine">Migraine</label>
+                <br>
+                <input type="checkbox" id="tension" name="tension" value="tension">
+                <label for="tension">Tension</label>
+                <br>
+                <input type="checkbox" id="cluster" name="cluster" value="cluster">
+                <label for="cluster">Cluster</label>
+                <br>
+                <input type="checkbox" id="other2" name="other2" value="other2">
+                <label for="2other">Other</label>  <input type="text" id="other2_txt" name="other2_txt">
+                <br>
+                <input type="checkbox" id="other2.2" name="other2.2" value="other2.2">
+                <label for="other2.2">Other</label>  <input type="text" id="other2.2_txt" name="other2.2_txt">
+                <br>
+            </div>
+            <br>
+            <div id="3">
+                <p>
+                    3. Please describe history of your headache conditions:
+                </p>
+                <input type="checkbox"
+                       id="during_service"
+                       name="during_service"
+                       value="during_service">
+                <label for="during_service">Veteran developed this condition during time in service.</label>
+                <br>
+                <input type="checkbox"
+                       id="progressively_worse"
+                       name="progressively_worse"
+                       value="progressively_worse">
+                <label for="progressively_worse">Veterans condition has progressively become worse over time</label>
+                <br>
+                <input type="checkbox"
+                       id="worse_since_exam"
+                       name="worse_since_exam"
+                       value="worse_since_exam">
+                <label for="worse_since_exam">The severity of my condition has become worse since my last physical exam</label>
+                <br>
+                <input type="checkbox" id="dailyLife" name="dailyLife" value="dailyLife">
+                <label for="dailyLife">Headache condition affects veterans daily life activities</label>
+                <br>
+                <input type="checkbox" id="medication" name="medication" value="medication">
+                <label for="medication">Veteran takes medication for this condition</label>
+                <br>
+            </div>
+            <br>
+            <div id="4">
+                <p>
+                    4. Do you currently take any medication for treatment of headaches?
+                </p>
+                <input type="radio" id="4.yes" name="4.medication" value="yes">
+                <label for="4.yes">YES</label>
+                <br>
+                <div id="innerfour">
+                    <br>
+                    <input type="checkbox" id="Acetaminophen" name="Acetaminophen">
+                    <label for="Acetaminophen">Acetaminophen (Tylenol)</label>
+                    <br>
+                    <input type="checkbox" id="Aspirin" name="Aspirin">
+                    <label for="Aspirin">Aspirin</label>
+                    <br>
+                    <input type="checkbox" id="Ibuprofen" name="Ibuprofen">
+                    <label for="Ibuprofen">Ibuprofen (Advil, Advil Migraine, Motrin)</label>
+                    <br>
+                    <input type="checkbox" id="Excedrin" name="Excedrin">
+                    <label for="Excedrin">Excedrin</label>
+                    <br>
+                    <input type="checkbox" id="Other_medicine" name="Other_medicine">
+                    <label for="Other_medicine">Other</label>  <input type="text" id="other_medicine_txt" name="other_medicine_txt">
+                </div>
+                <br>
+                <input type="radio" id="4.no" name="4.medication" value="no">
+                <label for="4.no">NO</label>
+            </div>
+            <br>
+            <div id="5">
+                <p>
+                    5. Do you experience headache pain?
+                </p>
+                <br>
+                <p>
+                    Please select the pain you experience
+                </p>
+                <input type="radio" id="5.yes" name="5.headache" value="yes">
+                <label for="5.yes">YES</label>
+                <br>
+                <input type="checkbox" id="constant_pain" name="constant_pain">
+                <label for="constant_pain">Do you have constant head pain?</label>
+                <br>
+                <input type="checkbox" id="pulsating_pain" name="pulsating_pain">
+                <label for="pulsating_pain">Do you have pulsating or throbbing head pain?</label>
+                <br>
+                <input type="checkbox" id="localized_pain" name="localized_pain">
+                <label for="localized_pain">Do you have pain localized to one side of the head?</label>
+                <br>
+                <input type="checkbox" id="pain_on_sides" name="pain_on_sides">
+                <label for="pain_on_sides">Do you have pain on both sides of your head?</label>
+                <br>
+                <input type="checkbox" id="worse_with_activity" name="worse_with_activity">
+                <label for="worse_with_activity">
+                    Does pain worsen with physical activity?
+                </label>
+                <br>
+                <input type="radio" id="5.no" name="5.headache" value="no">
+                <label for="5.no">
+                    NO
+                </label>
+            </div>
+            <br>
+            <div id="6">
+                <p>
+                    6. Do you have other symptoms contributing to your headaches?
+                </p>
+                <br>
+                <input type="radio" id="6.yes" name="q6" value="yes">
+                <label for="6.yes">
+                    YES
+                </label>
+                <p>
+                    Please select:
+                </p>
+                <br>
+                <input type="checkbox" id="6.Nausea" name="6_Nausea">
+                <label for="6.Nausea">
+                    Nausea
+                </label>
+                <br>
+                <input type="checkbox" id="6.Vomiting" name="6_Vomiting">
+                <label for="6.Vomiting">
+                    Vomiting
+                </label>
+                <br>
+                <input type="checkbox" id="6.sensitivity_light" name="6_sensitivity_light">
+                <label for="6.sensitivity_light">
+                    Sensitivity to light
+                </label>
+                <br>
+                <input type="checkbox" id="6.sensitivity_sound" name="6_sensitivity_sound">
+                <label for="6.sensitivity_sound">
+                    Sensitivity to sound
+                </label>
+                <br>
+                <input type="checkbox" id="6.changes_in_vision" name="6_changes_in_vision">
+                <label for="6.changes_in_vision">
+                    Changes in vision (Flashes to light, tunnel vision, blind spots, loss of vision)
+                </label>
+                <br>
+                <input type="checkbox" id="6.sensory_changes" name="6_sensory_changes">
+                <label for="6.sensory_changes">
+                    Sensory changes (such as feeling of pins and needles in extremities)
+                </label>
+                <br>
+                <input type="checkbox" id="6.other" name="6_other">
+                <label for="6.other">
+                    Other, Describe
+                </label>  <input type="text" id="6.other.txt" name="6_other_txt">
+                <br>
+                <br>
+                <input type="radio" id="6.no" name="q6" value="no">
+                <label for="6.no">
+                    NO
+                </label>
+            </div>
+            <br>
+            <div id="7">
+                <p>
+                    7. How long does your headache last?
+                </p>
+                <input type="radio" id="7.less_than_day" name="q7" value="7_less_than_day">
+                <label for="7.less_than_day">
+                    Less than 1 day
+                </label>
+                <br>
+                <input type="radio" id="7.1to2days" name="q7" value="7_1to2days">
+                <label for="7.1to2days">
+                    1-2 days
+                </label>
+                <br>
+                <input type="radio"
+                       id="7.more_than_2_days"
+                       name="q7"
+                       value="7_more_than_2_days">
+                <label for="7.more_than_2_days">
+                    More than 2 days
+                </label>
+                <br>
+                <input type="radio" id="7.other" name="q7" value="7_other">
+                <label for="7.other">
+                    Other
+                </label>  <input type="text" id="q7.txt" name="q7_txt">
+            </div>
+            <br>
+            <div id="8">
+                <p>
+                    8. Please indicate which side of your head is typically affecteded?
+                </p>
+                <input type="radio" id="8.right_side" name="q8" value="8.right_side">
+                <label for="8.right_side">
+                    Right side of head
+                </label>
+                <br>
+                <input type="radio" id="8.left_side" name="q8" value="8.left_side">
+                <label for="8.left_side">
+                    Left side of head
+                </label>
+                <br>
+                <input type="radio" id="8.both_sides" name="q8" value="8.both_sides">
+                <label for="8.both_sides">
+                    Both sides of head
+                </label>
+                <br>
+                <input type="radio" id="8.other" name="q8" value="8.other">
+                <label for="8.other">
+                    Other
+                </label>  <input type="text" id="q8.txt" name="q8.txt">
+            </div>
+            <br>
+            <p>
+                PROSTRATING MIGRAINES- Causing extreme exhaustion, powerlessness, headaches are
+                so severe and debilitating that he or she is required to lay down for an extended period of time
+                due to pain, complete exhaustion and physical weakness.
+            </p>
+            <br>
+            <div id="9">
+                <p>
+                    9. Do you experience the above symptoms?
+                </p>
+                <input type="radio" id="9.yes" name="q9" value="yes">
+                <label for="9.yes">
+                    YES
+                </label>
+                <br>
+                <div id="inner9" style="padding-left:3%">
+                    <p>
+                        How often (if at all) do you experience the above?
+                    </p>
+                    <br>
+                    <input type="checkbox"
+                           id="9_one_every_three_months"
+                           name="9_one_every_three_months">
+                    <label for="9_one_every_three_months">
+                        One every 3 months
+                    </label>
+                    <br>
+                    <input type="checkbox"
+                           id="9_averaging_in2_month"
+                           name="9_averaging_in2_month">
+                    <label for="9_averaging_in2_month">
+                        Averaging one in 2 months
+                    </label>
+                    <br>
+                    <input type="checkbox" id="9_once_month" name="9_once_month">
+                    <label for="9_once_month">
+                        Averaging once a month over the last several month
+                    </label>
+                </div>
+                <br>
+                <br>
+                <div id="inner9.2" style="padding-left:5%">
+                    <p>
+                        Have your prostrating attacks become so frequent and severe that it impacts your
+                        employment?
+                    </p>
+                    <input type="radio" id="9.2.yes" name="2.q9" value="yes">
+                    <label for="9.yes">YES</label>
+                    <br>
+                    <p>Check the following statements that apply</p>
+                    <br>
+                    <input type="checkbox" id="9.missing_work" name="9.missing_work">
+                    <label for="9.missing_work">Missing work due to symptoms has caused a negative financial effect</label><br>
+                    <input type="checkbox" id="9.unaemployed_interfere" name="9.unaemployed_interfere">
+                    <label for="9.unaemployed_interfere">(If unemployed) veteran's symptoms and frequency of symptoms would likely interfere with employment.</label><br>
+                    <input type="checkbox" id="9.work_problems" name="9.work_problems">
+                    <label for="9.work_problems">Symptoms have caused work-related problems such as:</label><br>
+                    <div id="inner9.2.1" style="padding-left:7%">
+                    <input type="checkbox" id="9.2.1_concentration" name="9.2.1_concentration">
+                    <label for="9.2.1_concentration">Issues with concentration</label><br>
+                    <input type="checkbox" id="9.2.1_productivity" name="9.2.1_productivity">
+                    <label for="9.2.1_productivity">Lack in productivity</label><br>
+                    <input type="checkbox" id="9.2.1_finish_work" name="9.2.1_finish_work">
+                    <label for="9.2.1_finish_work">Inability to finish out the work day</label><br>
+                    </div>
+                    <input type="checkbox" id="9.severe_symptoms" name="9.severe_symptoms">
+                    <label for="9.severe_symptoms">Severe symptoms has caused the veteran to be unable to get out of bed and has to call out of work</label><br>
+                    <input type="checkbox" id="9.financial_loss" name="9.financial_loss">
+                    <label for="9.financial_loss">Condition causes financial loss</label><br>
+                    <br>
+                    <input type="radio" id="9.2.no" name="2.q9" value="no">
+                    <label for="9.no">NO</label>
+                </div>
+                <br>
+                <br>
+                <input type="radio" id="9.no" name="q9" value="no">
+                <label for="9.no">
+                    NO
+                </label>
+                <br>
+                <br>
+                <div id="10">
+                    <p>
+                        10. Do you have a service-connected TBI diagnosis that your headaches are attributed to?
+                    </p>
+                    <input type="radio" id="10.yes" name="10.service_connected" value="yes">
+                    <label for="10.yes">YES</label>
+                    <br>
+                    <label for="10.describe_condition">
+                        Please describe your condition
+                    </label>
+                    <br>
+                    <textarea id="10.describe_condition" name="10.describe_condition" rows="7" cols="50"></textarea>
+                    <br>
+                    <br>
+                    <input type="radio" id="10.no" name="10.service_connected" value="no">
+                    <label for="10.no">NO</label>
+                </div>
+                <br>
+                <br>
+                <div id="11">
+                    <p>
+                        11. Do you have any painful or unstable scars as a result of head injury that is directly related to your headaches?
+                    </p>
+                    <input type="radio" id="11.yes" name="11.scar" value="yes">
+                    <label for="11.yes">YES</label>
+                    <br>
+                    <br>
+                    <label for="11.location">Location of scar:</label>
+                    <input type="text" id="11.location" name="11.location">
+                    <br>
+                    <br>
+                    <label for="11.Length">Length of scar:</label>
+                    <input type="text" id="11.Length" name="11.Length">CM
+                    <br>
+                    <br>
+                    <label for="11.Width">Width of scar:</label>
+                    <input type="text" id="11.Width" name="11.Width">CM
+                    <br>
+                    <br>
+                    <input type="radio" id="11.no" name="11.scar" value="no">
+                    <label for="11.no">NO</label>
+                </div>
+            </div>
+            <!--end of form-->
+            <br>
+            <br>
+            <button type="submit" class="btn btn-primary">
+                Submit
+            </button>
+        </form>
+    </div>
+    <button id="myBtn"
+            title="Go to top"
+            style="width: 5%;
+                   height: 5%;
+                   display: none;
+                   position: fixed;
+                   bottom: 10%;
+                   left: 90%;
+                   right: 5%;
+                   border: none;
+                   outline: none;
+                   background-color: black;
+                   color: white;
+                   cursor: pointer;
+                   border-radius: 50%;
+                   font-size: x-small;"
+            name="saveprogress">
+        Save Progress
+    </button>
+    {% comment %} <script src="{% static 'paqs/headache-form.js' %}" defer></script> {% endcomment %}

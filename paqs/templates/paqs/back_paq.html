@@ -1,0 +1,553 @@
+{% extends 'main/dashboard/dashboard.html' %}
+{% load static %}
+{% block dashboard %}
+<h1 class="mb-5 text-center">
+    <u>Back PAQ</u>
+    <p>
+        {{ message }}
+    </p>
+</h1>
+{% comment %} <div class="progress">
+    <div class="progress-bar"
+         role="progressbar"
+         style="width: 1%;"
+         aria-valuenow="0"
+         aria-valuemin="0"
+         aria-valuemax="100">
+        1%
+    </div>
+</div> {% endcomment %}
+<div class="row" id="progress">
+    <br>
+    <br>
+</div>
+<div class="col-lg-12 col-md-12 col-12" style="display:block">
+    <form id="iaq-form"
+          method="POST"
+          enctype="multipart/form-data"
+          autocomplete="off">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Legal Name:</label>
+            <input type="text" class="form-control" id="name" name="name" aria-describedby="nameHelp" placeholder="Enter your legal name" value={{ usern }}>
+            <small id="nameHelp" class="form-text text-muted">Please enter your name as it shows in your DD-214</small>
+        </div>
+        <br>
+        <br>
+        <h4>Answer the following regarding the current severity of your Service-Connected (s/c) back condition:</h4>
+        
+        
+        <br>
+        <br>
+        <label for="history_of_back_condition">
+            Please tell us about the history of your back condition (details such as date, where, how):
+        </label>
+        <br>
+        <textarea id="history_of_back_condition" name="history_of_back_condition" rows="10" cols="90" required>{{history_of_back_condition}}</textarea>
+        <br>
+        <br>
+        <label for="condition_affects_rom">
+            How does your back condition affect your range of motion and daily life?
+        </label>
+        <br>
+        <textarea id="condition_affects_rom" name="condition_affects_rom" rows="10" cols="90" required>{{condition_affects_rom}}</textarea>        
+        <br>
+        <br>
+        <label for="condition_ability_to_work">
+            Does your back condition impact your ability to work? If so — How?
+        </label>
+        <br>
+        <textarea id="condition_ability_to_work" name="condition_ability_to_work" rows="10" cols="90" required></textarea>
+        <br>
+        <br>
+        <div class="col-lg-12 col-md-12 col-12">
+            <h5>PLEASE CHECK THE FACTORS RESPONSIBLE FOR AFFECTING THE PERFORMANCE OF YOUR BACK:</h5>
+            <input type="checkbox" id="muscle_spasms" name="muscle_spasms" value="muscle_spasms" {%if muscle_spasms%}checked{%endif%}>
+            <label for="muscle_spasms"> Muscle spasms</label><br>
+            <input type="checkbox" id="interferences_standing" name="interferences_standing" value="interferences_standing">
+            <label for="interferences_standing"> Interferences with Standing</label><br>
+            <input type="checkbox" id="swelling" name="swelling" value="swelling">
+            <label for="swelling">Swelling</label><br>
+            <input type="checkbox" id="pain_on_movement" name="pain_on_movement" value="pain_on_movement">
+            <label for="pain_on_movement">Pain on movement</label><br>
+            <input type="checkbox" id="weakened_movement" name="weakened_movement" value="weakened_movement">
+            <label for="weakened_movement">Weakened Movement</label><br>
+            <input type="checkbox" id="more_movement" name="more_movement" value="more_movement">
+            <label for="more_movement">More movement than normal</label><br>
+            <input type="checkbox" id="guarding" name="guarding" value="guarding">
+            <label for="guarding">Guarding (protecting back to avoid flares)</label><br>
+            <input type="checkbox" id="easily_fatigued" name="easily_fatigued" value="easily_fatigued">
+            <label for="easily_fatigued">Easily fatigued</label><br>
+            <input type="checkbox" id="affects_walking" name="affects_walking" value="affects_walking">
+            <label for="affects_walking">Affects your walking motion</label><br>
+            <input type="checkbox" id="less_movement" name="less_movement" value="less_movement">
+            <label for="less_movement">Less movement than normal</label><br>
+            <input type="checkbox" id="history_surgery" name="history_surgery" value="history_surgery">
+            <label for="history_surgery">History of Back Surgery – Provide type of surgery and date (month, year):</label><br>
+            <br><br>
+            <div id='surgery'>
+                
+            </div>
+            <br>
+        </div>
+<!---STOP HERE-->
+        <div class="col-lg-12 col-md-12 col-12">
+            <h3>Surgery</h3>
+            <hr>
+            <label for=""></label>
+            <legend class="">Is there a scar related to condition and/or surgery?*</legend>
+            <div class="col-sm-10">
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="SurgeryOne" id="SurgeryOne" value="Yes"  >
+                    <label class="form-check-label" for="SurgeryOne">
+                    Yes</label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input"  type="radio" name="SurgeryOne" id="SurgeryTwo" value="No" >
+                    <label class="form-check-label" for="SurgeryTwo">
+                    No</label>
+                </div>
+                
+            </div>
+            <div id="Surgery1" class="col-md-6">
+
+            </div>
+            <br />
+
+            <div class="col-lg-12 col-md-12 col-12">
+                <legend class="">Dominant Hand*</legend>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="dominant-hand" id="dominant-hand-lt" value="dominant-hand-lt"  >
+                        <label class="form-check-label" for="dominant-hand-lt">
+                        Left Hand</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input"  type="radio" name="dominant-hand" id="dominant-hand-rt" value="dominant-hand-rt" >
+                        <label class="form-check-label" for="dominant-hand-rt">
+                        Right Hand</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input"  type="radio" name="dominant-hand" id="dominant-hand-amb" value="dominant-hand-amb" >
+                        <label class="form-check-label" for="dominant-hand-amb">
+                        Ambidextrous</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 col-md-12 col-12">
+                <legend>RANGE OF MOTION: This determines your VA disability rating</legend>
+                <hr>
+                <h6>FORWARD FLEXION Begin by standing. Bend forward as shown in picture to the left.
+                </h6>
+                <div class="row">
+                    <div class="col-12 col-md-6 img-fluid">
+                        <img src="https://paq101.com/wp-content/uploads/2020/12/Disability-graphics-12.jpg" width="70%">
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class=" ratio ratio-16x9">
+                            <iframe src="https://paq101.com/wp-content/uploads/2021/08/PAQ-101-Forward-Flexion-Back.mp4" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            <br />
+
+            <div class="col-lg-12 col-md-12 col-12">
+                <label for="initial-forward-flexion">Initial Forward Flexion*</label>
+                <p>WHAT DEGREE ARE YOU ABLE TO BEND FORWARD? (90 degrees is full range of motion)</p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="Default select example" id="Initial-forward-flexion" name="Initial-forward-flexion" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                      </select>
+                </div>
+            </div>
+<br>
+            <div>
+                <label for="time-forward-flexion">Repeat Use Over Time Forward Flexion*</label>
+                <p>WHAT DEGREE ARE YOU ABLE TO BEND FORWARD AFTER REPEATED USE? (90 degrees is full range of motion)</p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="Default select example" id="time-forward-flexion" name="time-forward-flexion" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                      </select>
+                </div>
+            </div>
+            <br>
+            <div>
+                <label for="time-forward-flexion">Flare-Up Forward Flexion:*</label>
+                <p>When your back is hurting, how far can you bend forward during a FLARE UP? (THIS AMOUNT SHOULD BE LESS THAN THE AMOUNT YOU'VE SAID ABOVE)</p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="" id="flareup-forward-flexion" name="flareup-forward-flexion" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="30">30</option>
+                        <option value="40">40</option>
+                        <option value="50">50</option>
+                        <option value="60">60</option>
+                        <option value="70">70</option>
+                        <option value="80">80</option>
+                        <option value="90">90</option>
+                      </select>
+                </div>
+            </div>
+            <br>
+            <legend>EXTENSION Begin by standing. Bend backwards as shown in picture to the left.</legend>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-12 col-md-6 img-fluid">
+                        <img src="https://paq101.com/wp-content/uploads/2020/12/Disability-graphics-09.jpg" width="70%">                        
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class=" ratio ratio-16x9">
+                            <iframe src="https://paq101.com/wp-content/uploads/2021/08/PAQ-101-Backwards-Bend-Back.mp4" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br /><br />
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="initial-extension" >Initial Extension*</label>
+                </legend>
+                <p>What degree are you able to bend backwards? (30 degrees is full range of motion)</p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="" id="initial-extension" name="initial-extension"  required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="overtime-extension" >
+                        Repeat Use Over Time Extension*
+                    </label>
+                </legend>
+                <p>
+                    What degree are you able to bend backwards after repeated use? (30 degrees is full range of motion)
+                </p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="" id="overtime-extension" name="overtime-extension" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="flareup-extension" >
+                        Flare-Up Extension:*
+                    </label>
+                </legend>
+                <p>When your back is hurting, how far can you bend back during a FLARE UP? (THIS AMOUNT SHOULD BE LESS THAN THE AMOUNT YOU'VE SAID ABOVE)</p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="Default select example" id="flareup-extension" name="flareup-extension" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+
+            <br>
+            <legend>
+                LATERAL FLEXION Begin by standing. Bend to both sides as shown in picture to the left.
+            </legend>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-12 col-md-6 img-fluid">
+                        <img src="https://paq101.com/wp-content/uploads/2020/12/Disability-graphics-15.jpg" width="70%">                        
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class=" ratio ratio-16x9">
+                            <iframe src="https://paq101.com/wp-content/uploads/2021/08/PAQ-101-Lateral-Flexion-Back.mp4" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="initial-lateral-extension" >Initial Lateral Flexion*</label>
+                </legend>
+                <p>
+                    To which degree can you bend left & right? (30 degrees is full range of motion)
+                </p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="" id="initial-lateral-extension" name="initial-lateral-extension" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="overtime-lateral-extension" >
+                        Repeat Use Over Time Lateral Flexion*
+                    </label>
+                </legend>
+                <p>
+                    To which degree can you bend left & right after repeated use? (30 degrees is full range of motion)
+                </p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="" id="overtime-lateral-extension" name="overtime-lateral-extension" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="flareup-lateral-extension" >
+                        Flare-Up Lateral Flexion:*
+                    </label>
+                </legend>
+                <p>
+                    When your back is hurting, how far can you bend left & right during a FLARE UP? (THIS AMOUNT SHOULD BE LESS THAN THE AMOUNT YOU'VE SAID ABOVE)
+                </p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="Default select example" id="flareup-lateral-extension" name="flareup-lateral-extension" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+
+            <br>
+            <legend>
+                LATERAL ROTATION Twist from waist to the left and right as shown in picture to the left.
+            </legend>
+            <div class="col-md-12">
+                <div class="row">
+                    <div class="col-12 col-md-6 img-fluid">
+                        <img src="https://paq101.com/wp-content/uploads/2020/12/Disability-graphics-18.jpg" width="70%">                        
+                    </div>
+                    <div class="col-12 col-md-6">
+                        <div class=" ratio ratio-16x9">
+                            <iframe src="https://paq101.com/wp-content/uploads/2021/08/PAQ-101-Lateral-Rotation-Back.mp4" frameborder="0"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <br />
+            <br />
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="initial-lateral-rotation" >Initial Lateral Rotation*</label>
+                </legend>
+                <p>
+                    What degree are you able to twist to both sides? (30 degrees is full range of motion).
+                </p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="" id="initial-lateral-rotation" name="initial-lateral-rotation" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="overtime-lateral-rotation" >
+                        Repeat Use Over Time Lateral Rotation*
+                    </label>
+                </legend>
+                <p>
+                    What degree are you able to twist to both sides after repeated use? (30 degrees is full range of motion).
+                </p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="" id="overtime-lateral-rotation" name="overtime-lateral-rotation" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+
+            <div class="col-md-12">
+                <legend> 
+                    <label for="flareup-lateral-rotation" >
+                        Flare-Up Lateral Rotation:*
+                    </label>
+                </legend>
+                <p>
+                    When your back is hurting, how far can you twist to both sides during a FLARE UP? (THIS AMOUNT SHOULD BE LESS THAN THE AMOUNT YOU'VE SAID ABOVE)
+                </p>
+                <div class="col-md-6">
+                    <select class="form-select" aria-label="Default select example" id="flareup-lateral-rotation" name="flareup-lateral-rotation" required>
+                        <option selected disabled value="select">Select an option</option>
+                        <option value="0">0</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="15">15</option>
+                        <option value="20">20</option>
+                        <option value="25">25</option>
+                        <option value="30">30</option>
+                      </select>
+                </div>
+            </div>
+            <br><br>
+            <legend>Assistive Devices</legend>
+            <hr>
+            <div class="col-md-6">
+                <label for="use-assist-device">
+                    How often do you use an assistive device?*
+                </label>
+                <select class="form-select" aria-label="" id="use-assist-device"  name="use-assist-device" required>
+                    <option selected disabled value="select">Select an option</option>
+                    <option name="Never" value="false">Never</option>
+                    <option name="Occassionally" value="Occassionally">Occassionally (Monthly)</option>
+                    <option name="Frequently" value="Frequently">Frequently (Weekly)</option>
+                    <option name="Perpetually " value="Perpetually">Perpetually (Daily)</option>
+                  </select>
+            </div>
+<!---NEED TO COMEBACK TOO-->
+            <div id="assist-device" >
+
+            </div>
+            <div>
+                <legend>
+                    Radiculopathy Questions
+                </legend>
+                <p>
+                    RADICULOPATHY - Also known as NERVE ISSUES and/or RADIATING PAIN DOWN LEGS)
+                </p>
+                <hr>
+                <p style="text-align:center;">
+                    Symptoms of radiculopathy are very common with back disabilities, and you may be eligible for additional ratings. Common symptoms: numbness and/or tingling sensation and/or loss of feeling or shooting pain down your legs. - Mild symptoms: doesn’t really interfere with activities of daily living (ADLs), only minor issues - Moderate symptoms: does affect ADLs; more constant and painful and/or weakened movement
+
+                </p>
+            </div>
+            <div>
+                <div id="mild-Sym">
+                    <legend>Mild Symptoms</legend>
+                    <input type="checkbox" id="mild-symptoms" name="mild-symptoms" value="mild-symptoms">
+                    <label for="">Yes, MILD symptoms</label><br>
+                    <div id="mildSymptoms2"></div>
+                </div>
+
+                <div id="mod-Sym">
+                    <legend>Moderate Symptoms</legend>
+                    <input type="checkbox" id="moderate-symptoms" name="moderate-symptoms" value="moderate-symptoms">
+                    <label for="">Yes, Moderate symptoms</label><br>
+                    <div id="moderateSymptoms2"></div>
+                </div>
+
+                
+                <div id="no-Symptoms">
+                    <legend>No Symptoms</legend>
+                    <input type="checkbox" id="no-symptoms" name="no-symptoms" value="no">
+                    <label for="">No, Symptoms</label><br>
+                </div>
+
+            </div>
+
+
+       <!--end of form-->
+        <br>
+        <br>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<button
+        id="myBtn"
+        title="Go to top"
+        style="width: 5%;
+               height: 5%;
+               display: none;
+               position: fixed;
+               bottom: 10%;
+               left: 90%;
+               right: 5%;
+               border: none;
+               outline: none;
+               background-color: black;
+               color: white;
+               cursor: pointer;
+               border-radius: 50%;
+               font-size: x-small;"
+        name="saveprogress"
+        >
+    Save Progress
+</button>
+    <script src="{% static 'paqs/back-form.js' %}" defer></script>
+{% endblock dashboard %}

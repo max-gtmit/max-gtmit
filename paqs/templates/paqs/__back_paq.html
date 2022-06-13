@@ -1,0 +1,1856 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Back PAQ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css">
+    <style>
+        th, td{
+            vertical-align: baseline;
+            font-weight: 400;
+        }
+        #q_1_other1, #q_1_other2{
+            border: 0px;
+            border-bottom: 1px solid;
+        }
+        h3, h5{
+            font-weight: 900;
+        }
+        h6{
+            font-weight: 400;
+        }
+        input{
+            outline: none;
+        }
+        img{
+            width: 100%;
+        }
+    </style>
+</head>
+
+<body class="p-3">
+    <div class="container">
+        <form id="back-form"
+          method="POST"
+          enctype="multipart/form-data"
+          autocomplete="off">
+          {% csrf_token %}
+            <h3 class="mb-3">BACK PAQ</h3>
+            <div class="alert alert-warning" role="alert" style="padding: 1%">{{message}}</div>
+            <h5>History</h5>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">1.</div>
+                <div>Are you service connected for a back condition?</div>
+            </div>
+            <div class="mb-3 pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_1" id="q_1_yes" value="yes" data-target="target-1" {%if q_1 == 'yes'%}checked{%endif%}>
+                    <label for="q_1_yes">Yes</label>
+                </div>
+                <div class="pl-4" target-name="target-1">
+                    <h6>What is your diagnosis as seen on your most recent Rating Decision Letter (RDL)?</h6>
+                    <table class="table-bordered">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <div class="pl-4 pr-4 pt-2 pb-2">
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="ankylosing_spondylitis" id="ankylosing_spondylitis" {%if ankylosing_spondylitis == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="ankylosing_spondylitis">Ankylosing Spondylitis</label>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="degenerative_arthritis" id="degenerative_arthritis" {%if degenerative_arthritis == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="degenerative_arthritis">Degenerative Arthritis</label>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="degenerative_disc_disease" id="degenerative_disc_disease" {%if degenerative_disc_disease == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="degenerative_disc_disease">Degenerative Disc Disease</label>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="lumbosacral_strain" id="lumbosacral_strain" {%if lumbosacral_strain == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="lumbosacral_strain">Lumbosacral Strain</label>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="sacroiliac_injury" id="sacroiliac_injury"{%if sacroiliac_injury == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="sacroiliac_injury">Sacroiliac injury</label>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="sacroiliac_weakness" id="sacroiliac_weakness"{%if sacroiliac_weakness == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="sacroiliac_weakness">Sacroiliac weakness</label>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="vertebral_fracture_1" id="vertebral_fracture_1"{%if vertebral_fracture_1 == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="vertebral_fracture_1">Vertebral fracture</label>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="segmental_instability" id="segmental_instability"{%if segmental_instability == 'on'%}checked{%endif%}
+                                            <label class="mb-1" for="segmental_instability">Segmental instability</label>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="pl-3 pr-3 pt-1 pb-2">
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="Spinal_Fusion" id="Spinal_Fusion" {%if Spinal_Fusion == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="Spinal_Fusion">Spinal Fusion</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="Spinal_Stenosis" id="Spinal_Stenosis" {%if Spinal_Stenosis == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="Spinal_Stenosis">Spinal Stenosis</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="Spondylolisthesis" id="Spondylolisthesis" {%if Spondylolisthesis == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="Spondylolisthesis">Spondylolisthesis</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="Traumatic_paralysis_complete" id="Traumatic_paralysis_complete" {%if Traumatic_paralysis_complete == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="Traumatic_paralysis_complete">Traumatic paralysis, complete</label>
+                                        </div>
+                                        
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="Other1" id="Other1" {%if Other1 == 'on'%}checked{%endif%}>>
+                                            <label class="mb-1" for="Other1">Other 1</label>
+                                            <input type="text" name="q_1_other1" id="q_1_other1" value="{%if Other1 == 'on'%}{{q_1_other1}}{%endif%}">
+                                        </div>
+                                        
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="Other2" id="Other2" {%if Other2 == 'on'%}checked{%endif%}>
+                                            <label class="mb-1" for="Other2">Other 2</label>
+                                            <input type="text" name="q_1_other2" id="q_1_other2" value="{%if Other2 == 'on'%}{{q_1_other2}}{%endif%}">
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_1" id="q_1_no" value="no" data-target-hide="target-1" {%if q_1 == 'no'%}selected{%endif%}>
+                    <label for="q_1_no">No</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">2.</div>
+                <div>Are you service connected for any of the following diagnosis:</div>
+            </div>
+            <div class="mb-3 pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="ankylosis" id="ankylosis" data-target="target-7" {%if ankylosis == 'on'%}checked{%endif%}>
+                    <label class="mb-1" for="ankylosis">Ankylosis</label>
+                </div>
+                <div class="pl-4" target-name="target-7">
+                    <h6>Does the fixed position of your spine interfere with walking, breathing, cause GI symptoms, cause SOB, difficulty chewing, opening of the mouth</h6>
+                    <div>
+                        <input class="mr-2" type="radio" name="q_2_1" id="q_2_1_yes" value="yes" data-target="target-2" {%if q_2_1_yes == 'yes'%}checked{%endif%}>
+                        <label for="q_2_1_yes">Yes</label>
+                    </div>
+                    <div class="pl-4" target-name="target-2">
+                        <h6>Does the ankylosis diagnosis include your neck?</h6>
+                        <div>
+                            <input class="mr-2" type="radio" name="q_2_1_1" id="q_2_1_1_yes" value="yes" {%if q_2_1_1_yes == 'yes'%}checked{%endif%}>
+                            <label for="q_2_1_1_yes">Yes</label>
+                        </div>
+                        <div>
+                            <input class="mr-2" type="radio" name="q_2_1_1" id="q_2_1_1_no" value="no" {%if q_2_1_1_no == 'no'%}checked{%endif%}>
+                            <label for="q_2_1_1_no">No</label>
+                        </div>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="radio" name="q_2_1" id="q_2_1_no" value="no" data-target-hide="target-2" {%if q_2_1_no == 'no'%}checked{%endif%}>
+                        <label for="q_2_1_no">No</label>
+                    </div>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="intervertebral_disc_syndrome" id="intervertebral_disc_syndrome" data-target="target-8" {%if intervertebral_disc_syndrome == 'on'%}checked{%endif%}>
+                    <label class="mb-1" for="intervertebral_disc_syndrome">Intervertebral Disc Syndrome (IVDS)</label>
+                </div>
+                <div class="pl-4" target-name="target-8">
+                    <h6>Have you been prescribed bed rest by a physician and have documentation of prescribed bed rest in the last 12 months?</h6>
+                    <div>
+                        <input class="mr-2" type="radio" name="q_2_2" id="q_2_2_yes" value="yes" data-target="target-3" {%if q_2_2_yes == 'yes'%}checked{%endif%}>
+                        <label for="q_2_2_yes">Yes</label>
+                    </div>
+                    <div class="pl-4" target-name="target-3">
+                        <div>
+                            <input class="mr-2" type="checkbox" name="no_prescribed_bed_rest_by_a_physician_in_the_last_12_months" id="no_prescribed_bed_rest_by_a_physician_in_the_last_12_months" {%if no_prescribed_bed_rest_by_a_physician_in_the_last_12_months == 'on'%}checked{%endif%}>
+                            <label class="mb-1" for="no_prescribed_bed_rest_by_a_physician_in_the_last_12_months">No prescribed bed rest by a physician in the last 12 months</label>
+                        </div>
+                        <div>
+                            <input class="mr-2" type="checkbox" name="prescribed_bed_rest_for_1_week" id="prescribed_bed_rest_for_1_week" {%if prescribed_bed_rest_for_1_week == 'on'%}checked{%endif%}>
+                            <label class="mb-1" for="prescribed_bed_rest_for_1_week">Prescribed bed rest for 1 week</label>
+                        </div>
+                        <div>
+                            <input class="mr-2" type="checkbox" name="prescribed_bed_rest_for_2_weeks" id="prescribed_bed_rest_for_2_weeks" {%if prescribed_bed_rest_for_2_weeks == 'on'%}checked{%endif%}>
+                            <label class="mb-1" for="prescribed_bed_rest_for_2_weeks">Prescribed bed rest for 2 week</label>
+                        </div>
+                        <div>
+                            <input class="mr-2" type="checkbox" name="prescribed_bed_rest_for_4_weeks" id="prescribed_bed_rest_for_4_weeks" {%if prescribed_bed_rest_for_4_weeks == 'on'%}checked{%endif%}>
+                            <label class="mb-1" for="prescribed_bed_rest_for_4_weeks">Prescribed bed rest for 3 week</label>
+                        </div>
+                        <div>
+                            <input class="mr-2" type="checkbox" name="prescribed_bed_rest_for_6_weeks" id="prescribed_bed_rest_for_6_weeks" {%if prescribed_bed_rest_for_6_weeks == 'on'%}checked{%endif%}>
+                            <label class="mb-1" for="prescribed_bed_rest_for_6_weeks">Prescribed bed rest for 4 week</label>
+                        </div>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="radio" name="q_2_2" id="q_2_2_no" value="no" data-target-hide="target-3" {%if q_2_2_no == 'no'%}checked{%endif%}>
+                        <label for="q_2_2_no">No</label>
+                    </div>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="vertebral_fracture" id="vertebral_fracture" data-target="target-9" {%if vertebral_fracture == 'on'%}checked{%endif%}>
+                    <label class="mb-1" for="vertebral_fracture">Vertebral Fracture</label>
+                </div>
+                <div class="pl-4" target-name="target-9">
+                    <h6>Have you been told you have more than 50% loss of vertebral body height</h6>
+                    <div>
+                        <input class="mr-2" type="radio" name="q_2_3" id="q_2_3_yes" value="yes" {%if q_2_3_yes == 'yes'%}checked{%endif%}>
+                        <label for="q_2_3_yes">Yes</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="radio" name="q_2_3" id="q_2_3_no" value="no" {%if q_2_3_no == 'no'%}checked{%endif%}>
+                        <label for="q_2_3_no">No</label>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">3.</div>
+                <div>Which statements best describe the history of your condition?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_developed_condition_from_an_in_service_event_injury" id="veteran_developed_condition_from_an_in_service_event_injury">
+                    <label class="mb-1" for="veteran_developed_condition_from_an_in_service_event_injury">Veteran developed condition from an in-service event/ injury</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_developed_this_condition_due_to_wear_and_tear_over_time" id="veteran_developed_this_condition_due_to_wear_and_tear_over_time">
+                    <label class="mb-1" for="veteran_developed_this_condition_due_to_wear_and_tear_over_time">Veteran developed this condition due to wear and tear over time</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="i_have_chronic_pain_because_of_my_condition" id="i_have_chronic_pain_because_of_my_condition">
+                    <label class="mb-1" for="i_have_chronic_pain_because_of_my_condition">I have chronic pain because of my condition.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_complains_of_worsening_symptoms" id="veteran_complains_of_worsening_symptoms">
+                    <label class="mb-1" for="veteran_complains_of_worsening_symptoms">Veteran complains of worsening symptoms.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_states_they_experience_more_frequent_flare_ups" id="veteran_states_they_experience_more_frequent_flare_ups">
+                    <label class="mb-1" for="veteran_states_they_experience_more_frequent_flare_ups">Veteran states they experience more frequent flare-ups.</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">4.</div>
+                <div>Do you experience pain?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_4" id="q_4_yes" value="yes">
+                    <label for="q_4_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_4" id="q_4_no" value="no">
+                    <label for="q_4_no">No</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">5.</div>
+                <div>Do you experience Flare-ups?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_5" id="q_5_yes" value="yes">
+                    <label for="q_5_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_5" id="q_5_no" value="no">
+                    <label for="q_5_no">No</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">6.</div>
+                <div>Please select (if any) statements that describe your flare-ups.</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_experience_severe_pain_during_flare_ups" id="veteran_experience_severe_pain_during_flare_ups">
+                    <label class="mb-1" for="veteran_experience_severe_pain_during_flare_ups">Veteran experience severe pain during flare ups.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="has_difficulty_with_movement_such_as_walking_bending_and_stooping" id="has_difficulty_with_movement_such_as_walking_bending_and_stooping">
+                    <label class="mb-1" for="has_difficulty_with_movement_such_as_walking_bending_and_stooping">Has difficulty with movement such as walking, bending and stooping.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_has_difficulty_with_sitting_and_standing_for_prolonged_periods_of_time" id="veteran_has_difficulty_with_sitting_and_standing_for_prolonged_periods_of_time">
+                    <label class="mb-1" for="veteran_has_difficulty_with_sitting_and_standing_for_prolonged_periods_of_time">Veteran has difficulty with sitting and standing for prolonged periods of time.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="flare_up_can_last_from_several_hours_to_several_days" id="flare_up_can_last_from_several_hours_to_several_days">
+                    <label class="mb-1" for="flare_up_can_last_from_several_hours_to_several_days">Flare up can last from several hours to several days.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="has_little_to_no_relief_with_drop_down_medication_pt_heat_and_cooling" id="has_little_to_no_relief_with_drop_down_medication_pt_heat_and_cooling">
+                    <label class="mb-1" for="has_little_to_no_relief_with_drop_down_medication_pt_heat_and_cooling">Has little to no relief with (drop down) medication, PT, heat and cooling.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_experiences_pain_and_discomfort_radiating_moving_down_the_legs" id="veteran_experiences_pain_and_discomfort_radiating_moving_down_the_legs">
+                    <label class="mb-1" for="veteran_experiences_pain_and_discomfort_radiating_moving_down_the_legs">Veteran experiences pain and discomfort radiating (moving) down the legs.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="please_describe_your_pain" id="please_describe_your_pain" data-target="target-10">
+                    <label class="mb-1" for="please_describe_your_pain">please describe your pain</label>
+                </div>
+                <div class="pl-4" target-name="target-10">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="dull" id="dull">
+                        <label class="mb-1" for="dull">Dull</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="achy" id="achy">
+                        <label class="mb-1" for="achy">Achy</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="sharp" id="sharp">
+                        <label class="mb-1" for="sharp">Sharp</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="throbbing" id="throbbing">
+                        <label class="mb-1" for="throbbing">throbbing</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">7.</div>
+                <div>Do you take any type of medication for pain/discomfort, attend any type of physical therapy (currently or in the past), or take any specific measures to help with your condition? If yes, please describe.</div>
+            </div>
+            <div class="pl-4">
+                <textarea class="p-3 w-100" name="q_7_input" id="q_7_input" cols="30" rows="10"></textarea>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">8.</div>
+                <div>Does your back condition prevent you from performing normal working movements of the spine? This includes not being able to move at the same speed, not having the same strength, and overall not having the same functional movements of the spine.</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_8" id="q_8_yes" value="yes">
+                    <label for="q_8_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_8" id="q_8_no" value="no">
+                    <label for="q_8_no">No</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">9.</div>
+                <div>Please select (if any) statements that describe your flare-ups.</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_is_unable_to_work_due_to_condition" id="veteran_is_unable_to_work_due_to_condition">
+                    <label class="mb-1" for="veteran_is_unable_to_work_due_to_condition">Veteran is unable to work due to condition</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_has_called_out_left_work_early_due_to_back_condition" id="veteran_has_called_out_left_work_early_due_to_back_condition">
+                    <label class="mb-1" for="veteran_has_called_out_left_work_early_due_to_back_condition">Veteran has called out/left work early due to back condition.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_is_unable_to_take_on_jobs_work_otherwise_would_have_taken_due_to_back_condition" id="veteran_is_unable_to_take_on_jobs_work_otherwise_would_have_taken_due_to_back_condition">
+                    <label class="mb-1" for="veteran_is_unable_to_take_on_jobs_work_otherwise_would_have_taken_due_to_back_condition">Veteran is unable to take on jobs/work otherwise would have taken due to back condition.</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="condition_causes_financial_loss" id="condition_causes_financial_loss">
+                    <label class="mb-1" for="condition_causes_financial_loss">Condition causes financial loss</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="veteran_is_unable_to_sit_for_long_periods_of_time" id="veteran_is_unable_to_sit_for_long_periods_of_time">
+                    <label class="mb-1" for="veteran_is_unable_to_sit_for_long_periods_of_time">Veteran is unable to sit for long periods of time</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="has_difficulty_getting_in_and_out_of_a_vehicle" id="has_difficulty_getting_in_and_out_of_a_vehicle">
+                    <label class="mb-1" for="has_difficulty_getting_in_and_out_of_a_vehicle">Has difficulty getting in and out of a vehicle</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="back_condition_negatively_impacts_daily_activities_such_as" id="back_condition_negatively_impacts_daily_activities_such_as" data-target="target-11">
+                    <label class="mb-1" for="back_condition_negatively_impacts_daily_activities_such_as">Back condition negatively impacts daily activities such as</label>
+                </div>
+                <div class="pl-4" target-name="target-11">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="walking" id="walking">
+                        <label class="mb-1" for="walking">Walking</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="dressing" id="dressing">
+                        <label class="mb-1" for="dressing">Dressing</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="grooming" id="grooming">
+                        <label class="mb-1" for="grooming">Grooming</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="working" id="working">
+                        <label class="mb-1" for="working">Working</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="conducting_household_activities" id="conducting_household_activities">
+                        <label class="mb-1" for="conducting_household_activities">Conducting household activities</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="exercise" id="exercise">
+                        <label class="mb-1" for="exercise">Exercise</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">10.</div>
+                <div>Would you be able to undergo a physical exam to test the range of motion, coordination and strength to your spine?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_10" id="q_10_yes" value="yes">
+                    <label for="q_10_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_10" id="q_10_no" value="no">
+                    <label for="q_10_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">11.</div>
+                <div>Does your back condition prevent you from performing normal working movements of the spine? This includes not being able to move at the same speed, not having the same strength, and overall not having the same functional movements of the spine.</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_11" id="q_11_yes" value="yes">
+                    <label for="q_11_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_11" id="q_11_no" value="no">
+                    <label for="q_11_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">12.</div>
+                <div>Do any of these motions cause pain? If so, check which movements cause pain.</div>
+            </div>
+            <table class="table-bordered w-100">
+                <tbody>
+                    <tr>
+                        <td>
+                            <div>
+                                <img src="{% static 'paqs/images/back-form/image_1.png' %}">
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src="{% static 'paqs/images/back-form/image_2.png' %}">
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src="{% static 'paqs/images/back-form/image_3.png' %}">
+                            </div>
+                        </td>
+                        <td>
+                            <div>
+                                <img src="{% static 'paqs/images/back-form/image_4.png' %}">
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="w-100 d-flex pt-3 pb-3 mb-3">
+                <div class="w-100 d-flex justify-content-center">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="extension" id="extension">
+                        <label class="mb-1" for="extension">Extension</label>
+                    </div>
+                </div>
+                <div class="w-100 d-flex justify-content-center">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="flexion" id="flexion">
+                        <label class="mb-1" for="flexion">Flexion</label>
+                    </div>
+                </div>
+                <div class="w-100 d-flex justify-content-center">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="lateral_flexion" id="lateral_flexion">
+                        <label class="mb-1" for="lateral_flexion">Lateral Flexion</label>
+                    </div>
+                </div>
+                <div class="w-100 d-flex justify-content-center">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="lateral_rotation" id="lateral_rotation">
+                        <label class="mb-1" for="lateral_rotation">lateral_rotation</label>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">13.</div>
+                <div>Please select which of the following (if any) activities cause pain</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="active_movement_you_initiating_movement_on_your_own" id="active_movement_you_initiating_movement_on_your_own">
+                    <label class="mb-1" for="active_movement_you_initiating_movement_on_your_own">Active movement (you initiating movement on your own)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="passive_movement_someone_moving_the_joint_for_you" id="passive_movement_someone_moving_the_joint_for_you">
+                    <label class="mb-1" for="passive_movement_someone_moving_the_joint_for_you">Passive movement (someone moving the joint for you)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="weight_bearing_with_body_weight" id="weight_bearing_with_body_weight">
+                    <label class="mb-1" for="weight_bearing_with_body_weight">Weight-bearing (with body weight)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="non_weight_bearing_no_body_weight" id="non_weight_bearing_no_body_weight">
+                    <label class="mb-1" for="non_weight_bearing_no_body_weight">Non Weight-bearing (no body weight)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="pain_on_rest_non_movement" id="pain_on_rest_non_movement">
+                    <label class="mb-1" for="pain_on_rest_non_movement">Pain on rest/non-movement</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">14.</div>
+                <div>Do you agree with the following statement: Veteran’s pain (selected on question 13) contributes to functional loss and inability to perform normal working movements</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_14" id="q_14_yes" value="yes">
+                    <label for="q_14_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_14" id="q_14_no" value="no">
+                    <label for="q_14_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">15.</div>
+                <div>Crepitus can be described as a popping, snapping grading or cracking sensation. Is this something you experience?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_15" id="q_15_yes" value="yes">
+                    <label for="q_15_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_15" id="q_15_no" value="no">
+                    <label for="q_15_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">16.</div>
+                <div>Do you feel pain on palpation? (Palpation is when an examiner applies slight pressure with their hands to assess an area)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_16" id="q_16_yes" value="yes" data-target="target-12">
+                    <label for="q_16_yes">Yes</label>
+                </div>
+                <div class="pl-4" target-name="target-12">
+                    <h6>Please select the area where you feel pain when pressure is applied</h6>
+                    <div class="d-flex align-items-center pl-5">
+                        <img src="{% static 'paqs/images/back-form/image_5.png' %}" alt="" class="w-25 flex-grow-none">
+                        <div class="flex-grow-1">
+                            <h6>1. Left Lateral Upper Back</h6>
+                            <h6>2. Medial Upper Back</h6>
+                            <h6>3. Right Lateral Upper Back</h6>
+                            <h6>4. Left Lateral Mid Back</h6>
+                            <h6>5. Medial Mid Back</h6>
+                            <h6>6. Right Lateral Mid Back</h6>
+                            <h6>7. Left Lateral Lower Back</h6>
+                            <h6>8. Medial Lower Back</h6>
+                            <h6>9. Right Lateral Lower Back</h6>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_16" id="q_16_no" value="no" data-target-hide="target-12">
+                    <label for="q_16_no">No</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">17.</div>
+                <div>Using a numbered pain scale of 0-10, select the severity of pain you feel on palpation.</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="none" id="none">
+                    <label class="mb-1" for="none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="mild" id="mild">
+                    <label class="mb-1" for="mild">Mild (1-3)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="moderate" id="moderate">
+                    <label class="mb-1" for="moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="severe" id="severe">
+                    <label class="mb-1" for="severe">Severe (7-10)</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">18.</div>
+                <div>Are you able to perform repeated spinal movements (at least three times in a row)?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_18" id="q_18_yes" value="yes">
+                    <label for="q_18_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_18" id="q_18_no" value="no">
+                    <label for="q_18_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">19.</div>
+                <div>Muscle atrophy is muscle death usually caused by inactivity, age, inability to use the muscle etc. Have you been clinically diagnosed with muscle atrophy as a result of your back condition?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_19" id="q_19_yes" value="yes">
+                    <label for="q_19_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_19" id="q_19_no" value="no">
+                    <label for="q_19_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">20.</div>
+                <div>Do you have incontinence (urine or bowel) due to your spinal condition?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_20" id="q_20_yes" value="yes">
+                    <label for="q_20_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_20" id="q_20_no" value="no">
+                    <label for="q_20_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">21.</div>
+                <div>Do you use an assistive device?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_21" id="q_21_yes" value="yes">
+                    <label for="q_21_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_21" id="q_21_no" value="no">
+                    <label for="q_21_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">22.</div>
+                <div>Please select which device and the frequency of use.</div>
+            </div>
+            <div class="pl-4">
+                <table class="table-bordered w-100">
+                    <tbody>
+                        <tr>
+                            <td class="p-3">
+                                <h6>Wheelchair</h6>
+                                <div class="pl-4">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="wheelchair_occasional" id="wheelchair_occasional">
+                                        <label class="mb-1" for="wheelchair_occasional">Occasional</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="wheelchair_regular" id="wheelchair_regular">
+                                        <label class="mb-1" for="wheelchair_regular">Regular</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="wheelchair_constant" id="wheelchair_constant">
+                                        <label class="mb-1" for="wheelchair_constant">Constant</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-3">
+                                <h6>Brace</h6>
+                                <div class="pl-4">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="brace_occasional" id="brace_occasional">
+                                        <label class="mb-1" for="brace_occasional">Occasional</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="brace_regular" id="brace_regular">
+                                        <label class="mb-1" for="brace_regular">Regular</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="brace_constant" id="brace_constant">
+                                        <label class="mb-1" for="brace_constant">Constant</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-3">
+                                <h6>Crutches</h6>
+                                <div class="pl-4">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="crutches_occasional" id="crutches_occasional">
+                                        <label class="mb-1" for="crutches_occasional">Occasional</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="crutches_regular" id="crutches_regular">
+                                        <label class="mb-1" for="crutches_regular">Regular</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="crutches_constant" id="crutches_constant">
+                                        <label class="mb-1" for="crutches_constant">Constant</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-3">
+                                <h6>Cane</h6>
+                                <div class="pl-4">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="cane_occasional" id="cane_occasional">
+                                        <label class="mb-1" for="cane_occasional">Occasional</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="cane_regular" id="cane_regular">
+                                        <label class="mb-1" for="cane_regular">Regular</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="cane_constant" id="cane_constant">
+                                        <label class="mb-1" for="cane_constant">Constant</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="p-3">
+                                <h6>Walker</h6>
+                                <div class="pl-4">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="walker_occasional" id="walker_occasional">
+                                        <label class="mb-1" for="walker_occasional">Occasional</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="walker_regular" id="walker_regular">
+                                        <label class="mb-1" for="walker_regular">Regular</label>
+                                    </div>
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="walker_constant" id="walker_constant">
+                                        <label class="mb-1" for="walker_constant">Constant</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">23.</div>
+                <div>Have you had surgery as a result of your condition?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_23" id="q_23_yes" value="yes" data-target="target-4">
+                    <label for="q_23_yes">Yes</label>
+                </div>
+                <div class="pl-4" target-name="target-4">
+                    <h6>Please select the area where you feel pain when pressure is applied</h6>
+                    <table class="table-bordered w-100">
+                        <tbody>
+                            <tr>
+                                <td class="p-2">Type of surgery:</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Date of surgery (Month and year):</td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">Surgery scar size: </td>
+                            </tr>
+                            <tr>
+                                <td class="p-2">The scar is painful or nonpainful:</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_23" id="q_23_no" value="no" data-target-hide="target-4">
+                    <label for="q_23_no">No</label>
+                </div>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">24.</div>
+                <div>Please select which (if any) contributing factors affect your back condition:</div>
+            </div>
+            <div class="pl-4">
+                <table class="w-100">
+                    <tbody>
+                        <tr>
+                            <td class="pl-5">
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="muscle_spasms" id="muscle_spasms">
+                                    <label class="mb-1" for="muscle_spasms">Muscle Spasms</label>
+                                </div>
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="easily_fatigued" id="easily_fatigued">
+                                    <label class="mb-1" for="easily_fatigued">Easily fatigued</label>
+                                </div>
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="interference_with_standing" id="interference_with_standing">
+                                    <label class="mb-1" for="interference_with_standing">Interference with standing </label>
+                                </div>
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="guarding" id="guarding">
+                                    <label class="mb-1" for="guarding">Guarding</label>
+                                </div>
+                            </td>
+                            <td class="pl-5">
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="interference_with_sitting" id="interference_with_sitting">
+                                    <label class="mb-1" for="interference_with_sitting">Interference with sitting</label>
+                                </div>
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="swelling" id="swelling">
+                                    <label class="mb-1" for="swelling">Swelling</label>
+                                </div>
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="pain_on_movement" id="pain_on_movement">
+                                    <label class="mb-1" for="pain_on_movement">Pain on movement</label>
+                                </div>
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="weakend_movement" id="weakend_movement">
+                                    <label class="mb-1" for="weakend_movement">Weakend movement</label>
+                                </div>
+                            </td>
+                            <td class="pl-5">
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="less_movement_than_normal" id="less_movement_than_normal">
+                                    <label class="mb-1" for="less_movement_than_normal">Less movement than normal</label>
+                                </div>
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="affects_your_walking" id="affects_your_walking">
+                                    <label class="mb-1" for="affects_your_walking">Affects your walking</label>
+                                </div>
+                                <div>
+                                    <input class="mr-2" type="checkbox" name="lack_of_endurance" id="lack_of_endurance">
+                                    <label class="mb-1" for="lack_of_endurance">Lack of endurance</label>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <h5 class="mt-3">Flexion</h5>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">25.</div>
+                <div>Forward flexion is the bending forward at the waist as seen in the images below. When selecting your answers, please select the image that reflects the point at which you begin to feel pain, NOT how far you can move with pain.</div>
+            </div>
+            <div class="pl-4">
+                <table class="w-100">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_6.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_7.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_8.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_9.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_10.png' %}" alt="">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table-bordered w-100 mb-3">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_25_a" id="q_25_a">
+                                        <label class="mb-1" for="q_25_a">A</label>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_25_b" id="q_25_b">
+                                        <label class="mb-1" for="q_25_b">B</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_25_c" id="q_25_c">
+                                        <label class="mb-1" for="q_25_c">C</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_25_d" id="q_25_d">
+                                        <label class="mb-1" for="q_25_d">D</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_25_e" id="q_25_e">
+                                        <label class="mb-1" for="q_25_e">E</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6 class="mb-3">24a. Which image best reflects the point at which you begin to feel pain/discomfort on your best day? (A, B, C, D, E) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain.</h6>
+                <h6 class="mb-3">24b. Which image best reflects the point at which you begin to feel pain/discomfort after performing this motion 3-6 times? (A, B, C, D, E) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain.</h6>
+                <h6 class="mb-3">24c. Which image best reflects the point at which you begin to feel pain/discomfort on your worst day (during a flare-up)? (A, B, C, D, E) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain. </h6>
+            </div>
+    
+            <h5 class="mt-3">Extension</h5>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">26.</div>
+                <div>Extension is the motion of bending backward at the waist as seen in the images below. When selecting your answers, please select the image that reflects the point at which you begin to feel pain, NOT how far you can move with pain.</div>
+            </div>
+            <div class="pl-4">
+                <table class="w-100 table-bordered mb-3">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_11.png' %}" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_12.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_13.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_14.png' %}" alt="">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_26_a" id="q_26_a">
+                                        <label class="mb-1" for="q_26_a">A</label>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_26_b" id="q_26_b">
+                                        <label class="mb-1" for="q_26_b">B</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_26_c" id="q_26_c">
+                                        <label class="mb-1" for="q_26_c">C</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_26_d" id="q_26_d">
+                                        <label class="mb-1" for="q_26_d">D</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6 class="mb-3">25a. Which image best reflects the point at which you begin to feel pain/discomfort on your best day? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain.</h6>
+                <h6 class="mb-3">25b. Which image best reflects the point at which you begin to feel pain/discomfort after performing this motion 3-6 times? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain.</h6>
+                <h6 class="mb-3">25c. Which image best reflects the point at which you begin to feel pain/discomfort on your worst day (during a flare-up)? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain.</h6>
+            </div>
+    
+            <h5 class="mt-3">Lateral Flexion</h5>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">27.</div>
+                <div>Left and right lateral flexion is the motion of bending (left and right) at the waist as seen in the images above. When selecting your answers, please select the image that reflects the point at which you begin to feel pain, NOT how far you can move with pain.</div>
+            </div>
+            <div class="pl-4">
+                <table class="w-100">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_15.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_16.png ' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_17.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_18.png' %}" alt="">
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <table class="table-bordered w-100 mb-3">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_27_a" id="q_27_a">
+                                        <label class="mb-1" for="q_27_a">A</label>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_27_b" id="q_27_b">
+                                        <label class="mb-1" for="q_27_b">B</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_27_c" id="q_27_c">
+                                        <label class="mb-1" for="q_27_c">C</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_27_d" id="q_27_d">
+                                        <label class="mb-1" for="q_27_d">D</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6 class="mb-3">26a. Which image best reflects the point at which you begin to feel pain/discomfort on your best day? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain.</h6>
+                <h6 class="mb-3">26b. Which image best reflects the point at which you begin to feel pain/discomfort after performing this motion 3-6 times? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain.</h6>
+                <h6 class="mb-3">26c. Which image best reflects the point at which you begin to feel pain/discomfort on your worst day (during a flare-up)? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain</h6>
+            </div>
+    
+            <h5 class="mt-3">Lateral Rotation</h5>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">28.</div>
+                <div>Left and right lateral Rotation is the motion of rotating (left and right) at the waist as seen in the images above. When selecting your answers, please select the image that reflects the point at which you begin to feel pain, NOT how far you can move with pain</div>
+            </div>
+            <div class="pl-4">
+                <table class="w-100 table-bordered mb-3">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_19.png' %}" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_20.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_21.png' %}" alt="">
+                                </div>
+                            </td>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_22.png' %}" alt="">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_28_a" id="q_28_a">
+                                        <label class="mb-1" for="q_28_a">A</label>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_28_b" id="q_28_b">
+                                        <label class="mb-1" for="q_28_b">B</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_28_c" id="q_28_c">
+                                        <label class="mb-1" for="q_28_c">C</label>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div class="w-100 d-flex justify-content-center p-2">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_28_d" id="q_28_d">
+                                        <label class="mb-1" for="q_28_d">D</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <h6 class="mb-3">27a. Which image best reflects the point at which you begin to feel pain/discomfort on your best day? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain.</h6>
+                <h6 class="mb-3">27b. Which image best reflects the point at which you begin to feel pain/discomfort after performing this motion 3-6 times? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain. </h6>
+                <h6 class="mb-3">27c. Which image best reflects the point at which you begin to feel pain/discomfort on your worst day (during a flare-up)? (A, B, C, D) -* If you do not see an image that reflects your symptoms, please indicate the degree at which you begin to feel pain. </h6>
+            </div>
+    
+            <h5 class="mt-3">Radiculopathy</h5>
+            <div class="pl-4 mb-3">
+                <h6>Radiculopathy is a relatively common condition that develops from the progression of a spinal condition. Symptoms of radiculopathy secondary to a back condition include pain, numbness, and tingling, to the lower extremities.</h6>
+            </div>
+            
+            <div class="d-flex mb-3">
+                <div class="mr-3">29.</div>
+                <div>Do you experience any of the symptoms described above?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_29" id="q_29_yes" value="yes">
+                    <label for="q_29_yes">Yes</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_29" id="q_29_no" value="no">
+                    <label for="q_29_no">No</label>
+                </div>
+                <table class="w-100 table-bordered mb-3">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_23.png' %}" alt="">
+                                </div>
+                            </th>
+                            <td>
+                                <div>
+                                    <img src="{% static 'paqs/images/back-form/image_24.png' %}" alt="">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="w-100 d-flex p-2 pl-5">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_29_1_a" id="q_29_1_a">
+                                        <label class="mb-1" for="q_29_1_a">A (Femoral)</label>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="w-100 d-flex p-2 pl-5">
+                                    <div>
+                                        <input class="mr-2" type="checkbox" name="q_29_1_b" id="q_29_1_b">
+                                        <label class="mb-1" for="q_29_1_b">B (Sciatic)</label>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">30.</div>
+                <div>Using the images above, please select which image best reflects the areas you feel radicular pain in.</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_30_a" id="q_30_a" data-target="target-13">
+                    <label class="mb-1" for="q_30_a">A (Femoral)</label>
+                </div>
+                <div class="pl-4" target-name="target-13">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_30_a_1" id="q_30_a_1">
+                        <label class="mb-1" for="q_30_a_1">Left leg </label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_30_a_2" id="q_30_a_2">
+                        <label class="mb-1" for="q_30_a_2">Right leg</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_30_a_3" id="q_30_a_3">
+                        <label class="mb-1" for="q_30_a_3">Both</label>
+                    </div>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_30_b" id="q_30_b" data-target="target-14">
+                    <label class="mb-1" for="q_30_b">B (Sciatic)</label>
+                </div>
+                <div class="pl-4" target-name="target-14">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_30_b_1" id="q_30_b_1">
+                        <label class="mb-1" for="q_30_b_1">Left leg </label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_30_b_2" id="q_30_b_2">
+                        <label class="mb-1" for="q_30_b_2">Right leg</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_30_b_3" id="q_30_b_3">
+                        <label class="mb-1" for="q_30_b_3">Both</label>
+                    </div>
+                </div>
+                <h6>
+                    <i>Please note: If you do not have documented medical evidence that you have complained about these symptoms in the past, please do not select both (femoral and sciatic) and select the one image that reflects where you most feel the discomfort. </i>
+                </h6>
+            </div>
+    
+            <h5 class="mt-3">Right Leg</h5>
+            <h6 class="mb-3">Please rate the severity of each symptom using a pain scale of 0-10 to your right leg.</h6>
+            <div class="pl-4">
+                <h6 class="mb-3"><i>Please note: do not select moderately severe unless you already have an established diagnosis of radiculopathy with the VA or have documented medical records that show you have been repeatedly seen for these symptoms.</i></h6>
+                <h6 class="mb-3"><i>Please note: do not select severe unless you have muscle atrophy due to radiculopathy.</i></h6>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">31.</div>
+                <div>Constant pain (Right Leg)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_31_none" id="q_31_none">
+                    <label class="mb-1" for="q_31_none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_31_mild" id="q_31_mild">
+                    <label class="mb-1" for="q_31_mild">Mild (1-2)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_31_moderate" id="q_31_moderate">
+                    <label class="mb-1" for="q_31_moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_31_moderately_severe" id="q_31_moderately_severe">
+                    <label class="mb-1" for="q_31_moderately_severe">Moderately severe (7-8)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_31_severe" id="q_31_severe">
+                    <label class="mb-1" for="q_31_severe">Severe (9-10)</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">32.</div>
+                <div>Intermittent pain (Right Leg)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_32_none" id="q_32_none">
+                    <label class="mb-1" for="q_32_none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_32_mild" id="q_32_mild">
+                    <label class="mb-1" for="q_32_mild">Mild (1-2)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_32_moderate" id="q_32_moderate">
+                    <label class="mb-1" for="q_32_moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_32_moderately_severe" id="q_32_moderately_severe">
+                    <label class="mb-1" for="q_32_moderately_severe">Moderately severe (7-8)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_32_severe" id="q_32_severe">
+                    <label class="mb-1" for="q_32_severe">Severe (9-10)</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">33.</div>
+                <div>Paresthesia (tingling or feeling of pins and needles) (Right Leg)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_33_none" id="q_33_none">
+                    <label class="mb-1" for="q_33_none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_33_mild" id="q_33_mild">
+                    <label class="mb-1" for="q_33_mild">Mild (1-2)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_33_moderate" id="q_33_moderate">
+                    <label class="mb-1" for="q_33_moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_33_moderately_severe" id="q_33_moderately_severe">
+                    <label class="mb-1" for="q_33_moderately_severe">Moderately severe (7-8)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_33_severe" id="q_33_severe">
+                    <label class="mb-1" for="q_33_severe">Severe (9-10)</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">34.</div>
+                <div>Numbness (Right Leg)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_34_none" id="q_34_none">
+                    <label class="mb-1" for="q_34_none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_34_mild" id="q_34_mild">
+                    <label class="mb-1" for="q_34_mild">Mild (1-2)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_34_moderate" id="q_34_moderate">
+                    <label class="mb-1" for="q_34_moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_34_moderately_severe" id="q_34_moderately_severe">
+                    <label class="mb-1" for="q_34_moderately_severe">Moderately severe (7-8)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_34_severe" id="q_34_severe">
+                    <label class="mb-1" for="q_34_severe">Severe (9-10)</label>
+                </div>
+            </div>
+    
+            <h5 class="mt-3">Left Leg</h5>
+            <h6 class="mb-3">Please rate the severity of each symptom using a pain scale of 0-10 to your left leg.</h6>
+            <div class="pl-4">
+                <h6 class="mb-3"><i>Please note: do not select moderately severe unless you already have an established diagnosis of radiculopathy with the VA or have documented medical records that show you have been repeatedly seen for these symptoms.</i></h6>
+                <h6 class="mb-3"><i>Please note: do not select severe unless you have muscle atrophy due to radiculopathy.</i></h6>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">35.</div>
+                <div>Constant pain (Left Leg)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_35_none" id="q_35_none">
+                    <label class="mb-1" for="q_35_none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_35_mild" id="q_35_mild">
+                    <label class="mb-1" for="q_35_mild">Mild (1-2)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_35_moderate" id="q_35_moderate">
+                    <label class="mb-1" for="q_35_moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_35_moderately_severe" id="q_35_moderately_severe">
+                    <label class="mb-1" for="q_35_moderately_severe">Moderately severe (7-8)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_35_severe" id="q_35_severe">
+                    <label class="mb-1" for="q_35_severe">Severe (9-10)</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">36.</div>
+                <div>Intermittent pain (Left Leg)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_36_none" id="q_36_none">
+                    <label class="mb-1" for="q_36_none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_36_mild" id="q_36_mild">
+                    <label class="mb-1" for="q_36_mild">Mild (1-2)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_36_moderate" id="q_36_moderate">
+                    <label class="mb-1" for="q_36_moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_36_moderately_severe" id="q_36_moderately_severe">
+                    <label class="mb-1" for="q_36_moderately_severe">Moderately severe (7-8)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_36_severe" id="q_36_severe">
+                    <label class="mb-1" for="q_36_severe">Severe (9-10)</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">37.</div>
+                <div>Paresthesia (tingling or feeling of pins and needles) (Left Leg)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_37_none" id="q_37_none">
+                    <label class="mb-1" for="q_37_none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_37_mild" id="q_37_mild">
+                    <label class="mb-1" for="q_37_mild">Mild (1-2)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_37_moderate" id="q_37_moderate">
+                    <label class="mb-1" for="q_37_moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_37_moderately_severe" id="q_37_moderately_severe">
+                    <label class="mb-1" for="q_37_moderately_severe">Moderately severe (7-8)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_37_severe" id="q_37_severe">
+                    <label class="mb-1" for="q_37_severe">Severe (9-10)</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">38.</div>
+                <div>Numbness (Left Leg)</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_38_none" id="q_38_none">
+                    <label class="mb-1" for="q_38_none">None (0)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_38_mild" id="q_38_mild">
+                    <label class="mb-1" for="q_38_mild">Mild (1-2)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_38_moderate" id="q_38_moderate">
+                    <label class="mb-1" for="q_38_moderate">Moderate (4-6)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_38_moderately_severe" id="q_38_moderately_severe">
+                    <label class="mb-1" for="q_38_moderately_severe">Moderately severe (7-8)</label>
+                </div>
+                <div>
+                    <input class="mr-2" type="checkbox" name="q_38_severe" id="q_38_severe">
+                    <label class="mb-1" for="q_38_severe">Severe (9-10)</label>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">39.</div>
+                <div>Look at the image below. Would performing that movement cause pain radiating below the knee?</div>
+            </div>
+            <div class="pl-4">
+                <div>
+                    <input class="mr-2" type="radio" name="q_39" id="q_39_yes" value="yes" data-target="target-5" data-target-hide="target-6">
+                    <label for="q_39_yes">Yes</label>
+                </div>
+                <div class="pl-4" target-name="target-5">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_39_1_left" id="q_39_1_left">
+                        <label class="mb-1" for="q_39_1_left">Left leg</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_39_1_right" id="q_39_1_right">
+                        <label class="mb-1" for="q_39_1_right">Right leg</label>
+                    </div>
+                </div>
+                <div>
+                    <input class="mr-2" type="radio" name="q_39" id="q_39_no" value="no" data-target="target-6" data-target-hide="target-5">
+                    <label for="q_39_no">No</label>
+                </div>
+                <div class="pl-4" target-name="target-6">
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_39_2_left" id="q_39_2_left">
+                        <label class="mb-1" for="q_39_2_left">Left leg</label>
+                    </div>
+                    <div>
+                        <input class="mr-2" type="checkbox" name="q_39_2_right" id="q_39_2_right">
+                        <label class="mb-1" for="q_39_2_right">Right leg</label>
+                    </div>
+                </div>
+                <img src="{% static 'paqs/images/back-form/image_25.png' %}" alt="" class="w-25">
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">40.</div>
+                <div>Do you feel like your ankle and knee reflexes are normal or hypoactive?</div>
+            </div>
+            <div class="pl-4">
+                <div class="w-100 d-flex" style="gap: 200px;">
+                    <div>
+                        <h6>Right</h6>
+                        <div>Ankle</div>
+                        <div class="pl-4">
+                            <div>
+                                <input class="mr-2" type="radio" name="q_40_right_ankle" id="q_40_right_ankle_normal" value="normal">
+                                <label for="q_40_right_ankle_normal">Normal</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="radio" name="q_40_right_ankle" id="q_40_right_ankle_hypoactive" value="hypoactive">
+                                <label for="q_40_right_ankle_hypoactive">Hypoactive</label>
+                            </div>
+                        </div>
+                        <div>Knee</div>
+                        <div class="pl-4">
+                            <div>
+                                <input class="mr-2" type="radio" name="q_40_right_knee" id="q_40_right_knee_normal" value="normal">
+                                <label for="q_40_right_knee_normal">Normal</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="radio" name="q_40_right_knee" id="q_40_right_knee_hypoactive" value="hypoactive">
+                                <label for="q_40_right_knee_hypoactive">Hypoactive</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <h6>Left</h6>
+                        <div>Ankle</div>
+                        <div class="pl-4">
+                            <div>
+                                <input class="mr-2" type="radio" name="q_40_left_ankle" id="q_40_left_ankle_normal" value="normal">
+                                <label for="q_40_left_ankle_normal">Normal</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="radio" name="q_40_left_ankle" id="q_40_left_ankle_hypoactive" value="hypoactive">
+                                <label for="q_40_left_ankle_hypoactive">Hypoactive</label>
+                            </div>
+                        </div>
+                        <div>Knee</div>
+                        <div class="pl-4">
+                            <div>
+                                <input class="mr-2" type="radio" name="q_40_left_knee" id="q_40_left_knee_normal" value="normal">
+                                <label for="q_40_left_knee_normal">Normal</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="radio" name="q_40_left_knee" id="q_40_left_knee_hypoactive" value="hypoactive">
+                                <label for="q_40_left_knee_hypoactive">Hypoactive</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">41.</div>
+                <div>Please select if you have reduced muscle strength in the following areas:</div>
+            </div>
+            <div class="pl-5 pt-2">
+                <div class="d-flex" style="gap: 200px;">
+                    <div>
+                        <div>Right:</div>
+                        <div class="pl-4">
+                            <div>
+                                <input class="mr-2" type="checkbox" name="q_41_right_hip" id="q_41_right_hip">
+                                <label class="mb-1" for="q_41_right_hip">Hip</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="checkbox" name="q_41_right_knee" id="q_41_right_knee">
+                                <label class="mb-1" for="q_41_right_knee">Knee</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="checkbox" name="q_41_right_ankle" id="q_41_right_ankle">
+                                <label class="mb-1" for="q_41_right_ankle">Ankle</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="checkbox" name="q_41_right_great_toe" id="q_41_right_great_toe">
+                                <label class="mb-1" for="q_41_right_great_toe">Great Toe</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div>Left:</div>
+                        <div class="pl-4">
+                            <div>
+                                <input class="mr-2" type="checkbox" name="q_41_left_hip" id="q_41_left_hip">
+                                <label class="mb-1" for="q_41_left_hip">Hip</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="checkbox" name="q_41_left_knee" id="q_41_left_knee">
+                                <label class="mb-1" for="q_41_left_knee">Knee</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="checkbox" name="q_41_left_ankle" id="q_41_left_ankle">
+                                <label class="mb-1" for="q_41_left_ankle">Ankle</label>
+                            </div>
+                            <div>
+                                <input class="mr-2" type="checkbox" name="q_41_left_great_toe" id="q_41_left_great_toe">
+                                <label class="mb-1" for="q_41_left_great_toe">Great Toe</label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="d-flex mb-3">
+                <div class="mr-3">42.</div>
+                <div>Please select whether you experience normal, decreased or no sensation during light touch in the following areas:</div>
+            </div>
+            <div class="pl-4">
+                <img src="{% static 'paqs/images/back-form/image_26.png' %}" alt="" class="w-25">
+                <table class="table-bordered w-100">
+                    <tbody>
+                        <tr>
+                            <th scope="row">
+                                <div class="p-2">
+                                    <div>L1/2 Upper thigh</div>
+                                    <div class="pl-4">
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="q_42_1_left" id="q_42_1_left" data-target="target-15">
+                                            <label class="mb-1" for="q_42_1_left">Left</label>
+                                        </div>
+                                        <div class="pl-4" target-name="target-15">
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_1_left_normal" id="q_42_1_left_normal">
+                                                <label class="mb-1" for="q_42_1_left_normal">Normal</label>
+                                            </div>
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_1_left_decreased" id="q_42_1_left_decreased">
+                                                <label class="mb-1" for="q_42_1_left_decreased">Decreased</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="q_42_1_right" id="q_42_1_right" data-target="target-16">
+                                            <label class="mb-1" for="q_42_1_right">Right</label>
+                                        </div>
+                                        <div class="pl-4" target-name="target-16">
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_1_right_normal" id="q_42_1_right_normal">
+                                                <label class="mb-1" for="q_42_1_right_normal">Normal</label>
+                                            </div>
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_1_right_decreased" id="q_42_1_right_decreased">
+                                                <label class="mb-1" for="q_42_1_right_decreased">Decreased</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="p-2">
+                                    <div>L4/5 Lower leg/ankle</div>
+                                    <div class="pl-4">
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="q_42_2_left" id="q_42_2_left" data-target="target-17">
+                                            <label class="mb-1" for="q_42_2_left">Left</label>
+                                        </div>
+                                        <div class="pl-4" target-name="target-17">
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_2_left_normal" id="q_42_2_left_normal">
+                                                <label class="mb-1" for="q_42_2_left_normal">Normal</label>
+                                            </div>
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_2_left_decreased" id="q_42_2_left_decreased">
+                                                <label class="mb-1" for="q_42_2_left_decreased">Decreased</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="q_42_2_right" id="q_42_2_right" data-target="target-18">
+                                            <label class="mb-1" for="q_42_2_right">Right</label>
+                                        </div>
+                                        <div class="pl-4" target-name="target-18">
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_2_right_normal" id="q_42_2_right_normal">
+                                                <label class="mb-1" for="q_42_2_right_normal">Normal</label>
+                                            </div>
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_2_right_decreased" id="q_42_2_right_decreased">
+                                                <label class="mb-1" for="q_42_2_right_decreased">Decreased</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row">
+                                <div class="p-2">
+                                    <div>L3/4 Thigh/Knee</div>
+                                    <div class="pl-4">
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="q_42_3_left" id="q_42_3_left" data-target="target-19">
+                                            <label class="mb-1" for="q_42_3_left">Left</label>
+                                        </div>
+                                        <div class="pl-4" target-name="target-19">
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_3_left_normal" id="q_42_3_left_normal">
+                                                <label class="mb-1" for="q_42_3_left_normal">Normal</label>
+                                            </div>
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_3_left_decreased" id="q_42_3_left_decreased">
+                                                <label class="mb-1" for="q_42_3_left_decreased">Decreased</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="q_42_3_right" id="q_42_3_right" data-target="target-20">
+                                            <label class="mb-1" for="q_42_3_right">Right</label>
+                                        </div>
+                                        <div class="pl-4" target-name="target-20">
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_3_right_normal" id="q_42_3_right_normal">
+                                                <label class="mb-1" for="q_42_3_right_normal">Normal</label>
+                                            </div>
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_3_right_decreased" id="q_42_3_right_decreased">
+                                                <label class="mb-1" for="q_42_3_right_decreased">Decreased</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </th>
+                            <td>
+                                <div class="p-2">
+                                    <div>L5</div>
+                                    <div class="pl-4">
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="q_42_4_left" id="q_42_4_left" data-target="target-21">
+                                            <label class="mb-1" for="q_42_4_left">Left</label>
+                                        </div>
+                                        <div class="pl-4" target-name="target-21">
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_4_left_normal" id="q_42_4_left_normal">
+                                                <label class="mb-1" for="q_42_4_left_normal">Normal</label>
+                                            </div>
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_4_left_decreased" id="q_42_4_left_decreased">
+                                                <label class="mb-1" for="q_42_4_left_decreased">Decreased</label>
+                                            </div>
+                                        </div>
+                                        <div>
+                                            <input class="mr-2" type="checkbox" name="q_42_4_right" id="q_42_4_right" data-target="target-22">
+                                            <label class="mb-1" for="q_42_4_right">Right</label>
+                                        </div>
+                                        <div class="pl-4" target-name="target-22">
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_4_right_normal" id="q_42_4_right_normal">
+                                                <label class="mb-1" for="q_42_4_right_normal">Normal</label>
+                                            </div>
+                                            <div>
+                                                <input class="mr-2" type="checkbox" name="q_42_4_right_decreased" id="q_42_4_right_decreased">
+                                                <label class="mb-1" for="q_42_4_right_decreased">Decreased</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary mt-5">Submit</button>
+            </div>
+        </form>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            {% comment %} $( "form" ).on( "submit", function( event ) {
+                console.log( $( this ).serializeArray() );
+                event.preventDefault();
+            }); {% endcomment %}
+            $("input[type=radio]").change(function() {
+                var dataTarget = $(this).attr('data-target');
+                if(typeof dataTarget !== typeof undefined && dataTarget !== false) {
+                    $(`[target-name=${$(this).attr("data-target")}]`).removeAttr("hidden");
+                    $(`[target-name=${$(this).attr("data-target")}] input`).removeAttr("disabled");
+                }
+                
+                var dataTargetHide = $(this).attr('data-target-hide');
+                if(typeof dataTargetHide !== typeof undefined && dataTargetHide !== false) {
+                    $(`[target-name=${$(this).attr("data-target-hide")}]`).attr("hidden", "hidden");
+                    $(`[target-name=${$(this).attr("data-target-hide")}] input`).attr("disabled", "disabled");
+                }
+            })
+            $("input[type=checkbox]").change(function() {
+                var dataTarget = $(this).attr('data-target');
+                if(typeof dataTarget !== typeof undefined && dataTarget !== false) {
+                    if($(this).is(":checked")) {
+                        $(`[target-name=${$(this).attr("data-target")}]`).removeAttr("hidden");
+                        $(`[target-name=${$(this).attr("data-target")}] input`).removeAttr("disabled");
+                    } else {
+                        $(`[target-name=${$(this).attr("data-target")}]`).attr("hidden", "hidden");
+                        $(`[target-name=${$(this).attr("data-target")}] input`).attr("disabled", "disabled");
+                    }
+                }
+            })
+        })
+    </script>
+</body>
+
+</html>

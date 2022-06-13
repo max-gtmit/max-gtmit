@@ -1,0 +1,168 @@
+{% extends 'main/dashboard/dashboard.html' %}
+{% load static %}
+
+{% block title %}PAQS{% endblock title %}
+
+{% block dashboard %}
+{%if message%}
+<div class="alert alert-success" role="alert">
+  <p class="mb-0">{{message}}</p>
+  <br>
+  <p class="mb-0">We can Help you increase your disability rating with the next disabilities:</p>
+  <br>
+  {%for PAQ in PAQS%}
+  <p class="mb-0"> • {{PAQ}}</p>
+  {%endfor%}
+</div>
+{%endif%}
+<h1 class="mb-5 text-center">
+  <u>PAQs</u>
+</h1>
+
+{% comment %} <div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Back PAQ</h5>
+        <p class="card-text">Personal Assessment Questionnaire</p>
+        <a href="{%url 'paqs:backpaq'%}" class="btn btn-primary">Back PAQ</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Mental PAQ</h5>
+        <p class="card-text">Personal Assessment Questionnaire</p>
+        <a href="{%url 'paqs:headachepaq'%}" class="btn btn-primary">Other PAQ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="row"><br><br><br><br></div>
+<div class="row"><hr></div>
+<div class="row"><br><br><br><br></div> {% endcomment %}
+
+<div class="row">
+{%for dis in dis_data%}
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        {%if dis.url == 'paqs:paqs'%}
+          <h5 class="card-title" disabled>{{dis.disability}} - (Coming soon)</h5>
+          <p>Currently, we do not offer a PAQ for this DBQ.</p> 
+          <p>However, it is in our plans. We'll notify as soon as we offer it.</p>
+          <p class="card-text" disabled>Personal Assessment Questionnaire</p>
+          <a href="{%url dis.url %}" class="btn btn-primary disabled">{{dis.disability}}</a>
+          {%else%}
+          <h5 class="card-title">{{dis.disability}}</h5>
+          <p class="card-text">Personal Assessment Questionnaire</p>
+          <a href="{%url dis.url %}" class="btn btn-primary">{{dis.disability}}</a>
+        {%endif%}
+      </div>
+    </div>
+  </div>
+{%endfor%}
+</div>
+
+{%if offerPaq == 0%}
+<div class="row">
+  <div class="row g-3 d-flex justify-content-center">
+    <p class="text-center">PAQs to DBQs without completing ({{offerPaq}})</p>
+    <p class="text-center">Seems like there is no more PAQs to complete</p>
+    <a type="button"
+    class="btn btn-success col-sm-12 col-md-12 col-lg-6"
+    >
+    Pay now!
+  </a> 
+  {%comment%}
+  I could pull one more variable and check if they have something in the cart. There, we decide if the button says
+  Pay or something else
+  {% endcomment %}
+</div>
+<br>
+</div>
+{%endif%}
+
+{% comment %} <div class="row">
+</br>
+</br>
+</div>
+<div class="row">
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Other PAQ</h5>
+        <p class="card-text">Personal Assessment Questionnaire</p>
+        <a href="#" class="btn btn-primary">Other PAQ</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-6">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">Other PAQ</h5>
+        <p class="card-text">Personal Assessment Questionnaire</p>
+        <a href="#" class="btn btn-primary">Other PAQ</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+</br>
+</br>
+</br>
+</br>
+</div>
+
+<div class="col-lg-4 col-md-6 col-12" style="display:none">
+        <form id="iaq-form"
+              method="POST"
+              enctype="multipart/form-data"
+              autocomplete="off">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="name">Legal Name:</label>
+                <input type="text"
+                       class="form-control"
+                       id="name"
+                       name="name"
+                       aria-describedby="nameHelp"
+                       placeholder="Enter your legal name">
+                <small id="nameHelp" class="form-text text-muted">Please enter your name as it shows in your DD-214</small>
+            </div>
+            <br>
+            <div class="form-group">
+                <label for="ssn">SSN:</label>
+                <input type="password"
+                       class="form-control"
+                       id="ssn"
+                       name="ssn"
+                       aria-describedby="ssnHelp"
+                       placeholder="Enter SSN"
+                       minlength="9"
+                       maxlength="12">
+                <small id="passwordHelp" class="form-text text-muted">We consider this very private information</small>
+            </div>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div> {% endcomment %}
+    <!--<button type="submit" class="btn btn-primary">Submit</button>-->
+    <div class="row">
+      <div class="row g-3 d-flex justify-content-center">
+        <a type="button"
+        class="btn btn-danger col-sm-12 col-md-12 col-lg-6"
+        id='seehelp'
+        disabled
+        href="#"
+        >
+        Something in my disabilities looks off, and I'd like to change it
+      </a>
+    </div>
+    <br>
+  </div>
+{% endblock dashboard %}

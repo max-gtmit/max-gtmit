@@ -1,0 +1,64 @@
+
+
+.main_ajax_form{
+    padding:5%;
+    font-size:20px;
+}
+.input{
+    font-size:20px;
+    
+}
+.special_input{
+    outline:none;border:none;border-bottom:1px solid black;
+}
+.knopka {
+    border-radius: 10px;
+    color: #fff; 
+    border:0px;
+    text-decoration: none; 
+    user-select: none; 
+    background: rgba(64, 56, 212, 0.871); 
+    padding: .7em 1.5em; 
+    outline: none; 
+  } 
+  .knopka:hover { background: rgba(37, 32, 126, 0.871); cursor:pointer;} 
+  .knopka:active { background: rgba(17, 15, 59, 0.871); } 
+.block_vid_1{
+    margin-left:15px;
+    
+}
+input:hover{
+    cursor:pointer;
+}
+input:hover:disabled{
+    cursor:default;
+}
+label:hover{
+    cursor:pointer;
+}
+
+.block_vid_2{
+    margin-left:35px;
+
+}
+table.iksweb{
+    width: 20%;
+    
+    border-collapse:collapse;
+    border-spacing:0;
+    height: auto;
+}
+table.iksweb,table.iksweb td, table.iksweb th {
+    
+    border: 1px solid #595959;
+}
+table.iksweb td,table.iksweb th {
+    padding: 3px;
+    width: 30px;
+    height: 35px;
+}
+table.iksweb th {
+    background: #347c99; 
+    color: #fff; 
+    font-weight: normal;
+}

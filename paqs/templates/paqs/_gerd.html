@@ -1,0 +1,332 @@
+
+<link rel="stylesheet" href="main.css">
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+  
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+<script src="main.js"></script>
+<div class="main_ajax_form" style="display:block">
+    <form method="post" id="ajax_form" action=""
+          enctype="multipart/form-data"
+          autocomplete="off">
+          <div id="1">
+            <h3 >History
+            </h3>
+            
+            <p>1. Which of the following have you been diagnosed and service-connected for?
+            </p>
+            <input type="checkbox" id="GERD" name="GERD" value="GERD">
+            <label for="GERD">Gastroesophageal Reflux Disease (GERD)</label><br>
+            
+            <input type="checkbox" id="hiatal_hernia" name="hiatal_hernia" value="hiatal_hernia">
+            <label for="hiatal_hernia">Hiatal Hernia</label><br>
+
+        </div>
+        <br>        
+        <div id="2">
+            <p>2. Please check if the following applies:
+            </p>
+                <input type="checkbox" id="progressively" name="progressively" value="progressively">
+                <label for="progressively">Symptoms have progressively worsened since the last exam</label><br>
+                <input type="checkbox" id="symptoms_include" name="symptoms_include" value="symptoms_include">
+                <label for="symptoms_include">Symptoms include:</label><br>
+                    <div class="block_vid_1">
+
+                        <input type="checkbox" id="nausea" name="nausea" value="nausea" disabled>
+                    <label for="nausea">Nausea</label><br>
+                    <input type="checkbox" id="regurgitation" name="regurgitation" value="regurgitation" disabled>
+                    <label for="regurgitation">Regurgitation</label><br>
+                    <input type="checkbox" id="prolonged_discomfort" name="prolonged_discomfort" value="prolonged_discomfort" disabled>
+                    <label for="prolonged_discomfort">Prolonged discomfort</label><br>
+                    </div>
+                <input type="checkbox" id="foods_exacerbate" name="foods_exacerbate" value="foods_exacerbate">
+                <label for="foods_exacerbate">Certain foods exacerbate symptoms</label>
+
+        </div>
+        <br>
+        <div id="3">
+            <p>3. Do you take medication (prescribed or over the counter)?
+            </p>
+            
+            
+            <input type="checkbox" id="3.yes" name="history" value="yes">
+            <label for="3.yes">Yes</label><br><div class="block_vid_1">
+                <table class="iksweb" style="min-width:40%;">
+                    <tbody>
+                        <tr>
+                            <td>
+                                <input type="checkbox" id="tums" name="tums" value="tums" disabled>
+                                <label for="tums">Tums
+                    
+                                </label><br>
+                                <input type="checkbox" id="omeprazole" name="omeprazole" value="omeprazole" disabled>
+                                <label for="omeprazole">Omeprazole (Prilosec) </label><br>
+                                <input type="checkbox" id="esomeprazole" name="esomeprazole" value="esomeprazole" disabled>
+                                <label for="esomeprazole">Esomeprazole (Nexium)</label><br>
+                                <input type="checkbox" id="pantoprazole" name="pantoprazole" value="pantoprazole"disabled >
+                                <label for="pantoprazole">Pantoprazole (Protonix) </label><br>
+                                <input type="checkbox" id="rabeprazole" name="rabeprazole" value="rabeprazole"disabled >
+                                <label for="rabeprazole">Rabeprazole (Aciphex)
+                                </label><br>
+                                <input type="checkbox" id="famotidine" name="famotidine" value="famotidine" disabled>
+                                <label for="famotidine">Famotidine (Pepcid)
+                                </label><br>
+                            </td>
+                            <td>
+                                <input type="checkbox" id="alka" name="alka" value="alka" disabled>
+                                <label for="alka">Alka-Seltzer
+                    
+                                </label><br>
+                                <input type="checkbox" id="maalox" name="maalox" value="maalox" disabled>
+                                <label for="maalox">Maalox</label><br>
+                                <input type="checkbox" id="mylanta" name="mylanta" value="mylanta" disabled>
+                                <label for="mylanta">Mylanta</label><br>
+                                <input type="checkbox" id="pepto" name="pepto" value="pepto" disabled>
+                                <label for="pepto">Pepto-Bismol</label><br>
+                                <input type="checkbox" id="rolaids" name="rolaids" value="rolaids" disabled>
+                                <label for="rolaids">Rolaids
+                                </label><br>
+                                <input type="checkbox" id="3.other" name="3.other" value="other"disabled >
+                                <label for="3.other">Other  <input class="special_input" name="3_2other" id='3_2other' disabled>
+                                </label><br>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+           </div>
+            <input type="checkbox" id="3.no" name="history" value="no">
+            <label for="3.no">No</label><br>
+        </div>
+        <br>
+        <div id="4">
+            <p>4. Please select which symptoms you experience due to this condition:</p>
+            <table class="iksweb" style="min-width:40%;">
+                <tbody>
+                    <tr>
+                        <td>
+                            <input type="checkbox" id="persistently" name="persistently" value="persistently" >
+                            <label for="persistently">Persistently recurrent epigastric
+                                distress
+                
+                            </label><br>
+                            <input type="checkbox" id="infrequent" name="infrequent" value="infrequent" >
+                            <label for="infrequent">Infrequent episodes of epigastric
+                                distress</label><br>
+                            <input type="checkbox" id="dysphagia" name="dysphagia" value="dysphagia" >
+                            <label for="dysphagia">Dysphagia</label><br>
+                            <input type="checkbox" id="pyrosis" name="pyrosis" value="pyrosis" >
+                            <label for="pyrosis">Pyrosis </label><br>
+                            <input type="checkbox" id="reflux" name="reflux" value="reflux" >
+                            <label for="reflux">Reflux
+                            </label><br>
+                            
+                        </td>
+                        <td>
+                            <input type="checkbox" id="regurgitation_1" name="regurgitation_1" value="regurgitation_1" >
+                            <label for="regurgitation_1">Regurgitation
+                
+                            </label><br>
+                            <input type="checkbox" id="substernal" name="substernal" value="substernal" >
+                            <label for="substernal">Substernal pain</label><br>
+                            <input type="checkbox" id="shoulder" name="shoulder" value="shoulder" >
+                            <label for="shoulder">Shoulder pain</label><br>
+                            <input type="checkbox" id="arm" name="arm" value="arm" >
+                            <label for="arm">Arm pain</label><br>
+                            <input type="checkbox" id="impairment" name="impairment" value="impairment" >
+                            <label for="impairment">Symptoms productive of
+                                considerable impairment health
+                            </label><br>
+                            
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+<br>
+            <table class="iksweb" style="width:40%;">
+                <tbody>
+                    <tr style="text-align:center;">
+                        <td><b>Symptoms</b></td>
+                        <td><b>How many times per
+                            year</b>?
+                            </td>
+                        <td><b>How long does each
+                            episode last</b>?
+                            </td>
+                    </tr>
+                    <tr>
+                        <td ><input type="checkbox" id="sleep" name="sleep" value="sleep" >
+                            <label for="sleep">Sleep Disturbance 
+                            </label><br></td>
+                        <td><input type="checkbox" id="1.1" name="1" value="1" disabled>
+                            <label for="1.1">1 
+                            </label><br>
+                            <input type="checkbox" id="1.2" name="1" value="2" disabled>
+                            <label for="1.2">2
+                            </label><br>
+                            <input type="checkbox" id="1.3" name="1" value="3" disabled>
+                            <label for="1.3">3
+                            </label><br>
+                            <input type="checkbox" id="1.4" name="1" value="4" disabled>
+                            <label for="1.4">4 or more
+                            </label><br></td>
+                        <td><input type="checkbox" id="1.l_1" name="1_2" value="l_1" disabled>
+                            <label for="1.l_1">Less than 1 day
+                            </label><br>
+                            <input type="checkbox" id="1.19" name="1_2" value="19"disabled >
+                            <label for="1.19">1-9 days
+                            </label><br>
+                            <input type="checkbox" id="1.10_more" name="1_2" value="10_more"disabled >
+                            <label for="1.10_more">10 days or more
+                            </label><br>
+                            </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="Nausea" name="Nausea" value="Nausea" >
+                            <label for="Nausea">Nausea
+                            </label><br></td>
+                            <td><input type="checkbox" id="2.1" name="2" value="1" disabled>
+                                <label for="2.1">1 
+                                </label><br>
+                                <input type="checkbox" id="2.2" name="2" value="2" disabled>
+                                <label for="2.2">2
+                                </label><br>
+                                <input type="checkbox" id="2.3" name="2" value="3" disabled>
+                                <label for="2.3">3
+                                </label><br>
+                                <input type="checkbox" id="2.4" name="2" value="4" disabled>
+                                <label for="2.4">4 or more
+                                </label><br></td>
+                            <td><input type="checkbox" id="2.l_1" name="2_2" value="l_1" disabled>
+                                <label for="2.l_1">Less than 1 day
+                                </label><br>
+                                <input type="checkbox" id="2.19" name="2_2" value="19" disabled>
+                                <label for="2.19">1-9 days
+                                </label><br>
+                                <input type="checkbox" id="2.10_more" name="2_2" value="10_more" disabled>
+                                <label for="2.10_more">10 days or more
+                                </label><br>
+                                </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="vomiting" name="vomiting" value="vomiting" >
+                            <label for="vomiting">Vomiting
+                            </label><br></td>
+                            <td><input type="checkbox" id="3.1" name="3" value="1" disabled>
+                                <label for="3.1">1 
+                                </label><br>
+                                <input type="checkbox" id="3.2" name="3" value="2"disabled >
+                                <label for="3.2">2
+                                </label><br>
+                                <input type="checkbox" id="3.3" name="3" value="3" disabled>
+                                <label for="3.3">3
+                                </label><br>
+                                <input type="checkbox" id="3.4" name="3" value="4" disabled>
+                                <label for="3.4">4 or more
+                                </label><br></td>
+                            <td><input type="checkbox" id="3.l_1" name="3_2" value="l_1" disabled>
+                                <label for="3.l_1">Less than 1 day
+                                </label><br>
+                                <input type="checkbox" id="3.19" name="3_2" value="19"disabled >
+                                <label for="3.19">1-9 days
+                                </label><br>
+                                <input type="checkbox" id="3.10_more" name="3_2" value="10_more" disabled>
+                                <label for="3.10_more">10 days or more
+                                </label><br>
+                                </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="hematemesis" name="hematemesis" value="hematemesis" >
+                            <label for="hematemesis">Hematemesis
+                            </label><br></td>
+                            <td><input type="checkbox" id="4.1" name="4" value="1"disabled >
+                                <label for="4.1">1 
+                                </label><br>
+                                <input type="checkbox" id="4.2" name="4" value="2" disabled>
+                                <label for="4.2">2
+                                </label><br>
+                                <input type="checkbox" id="4.3" name="4" value="3" disabled>
+                                <label for="4.3">3
+                                </label><br>
+                                <input type="checkbox" id="4.4" name="4" value="4" disabled>
+                                <label for="4.4">4 or more
+                                </label><br></td>
+                            <td><input type="checkbox" id="4.l_1" name="4_2" value="l_1"disabled >
+                                <label for="4.l_1">Less than 1 day
+                                </label><br>
+                                <input type="checkbox" id="4.19" name="4_2" value="19"disabled >
+                                <label for="4.19">1-9 days
+                                </label><br>
+                                <input type="checkbox" id="4.10_more" name="4_2" value="10_more" disabled>
+                                <label for="4.10_more">10 days or more
+                                </label><br>
+                                </td>
+                    </tr>
+                    <tr>
+                        <td><input type="checkbox" id="moderate_anemia" name="moderate_anemia" value="moderate_anemia" >
+                            <label for="moderate_anemia">Melena with Moderate
+                                Anemia
+                            </label><br></td>
+                            <td><input type="checkbox" id="5.1" name="5" value="1"disabled >
+                                <label for="5.1">1 
+                                </label><br>
+                                <input type="checkbox" id="5.2" name="5" value="2" disabled>
+                                <label for="5.2">2
+                                </label><br>
+                                <input type="checkbox" id="5.3" name="5" value="3" disabled>
+                                <label for="5.3">3
+                                </label><br>
+                                <input type="checkbox" id="5.4" name="5" value="4" disabled>
+                                <label for="5.4">4 or more
+                                </label><br></td>
+                            <td><input type="checkbox" id="5.l_1" name="5_2" value="l_1" disabled>
+                                <label for="5.l_1">Less than 1 day
+                                </label><br>
+                                <input type="checkbox" id="5.19" name="5_2" value="19" disabled>
+                                <label for="5.19">1-9 days
+                                </label><br>
+                                <input type="checkbox" id="5.10_more" name="5_2" value="10_more"disabled >
+                                <label for="5.10_more">10 days or more
+                                </label><br>
+                                </td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+        <br>
+
+        <div id="5">
+            <p>5. Have you lost more than 20% of your baseline weight in the last 3 months?
+
+            </p>
+            <input type="checkbox" id="5.yes" name="20_prc" value="yes">
+            <label for="5.yes">Yes</label><br>
+            
+            <div class="block_vid_1">
+                
+                <input type="checkbox" id="baseline" name="baseline" disabled value="baseline">
+                <label for="baseline">Baseline weight <input class="special_input" name="2_baseline" id='2_baseline' disabled></label><br>
+                <input type="checkbox" id="current" disabled name="current" value="current">
+                <label for="current">Current Weight <input class="special_input" name="2_current" id='2_current' disabled></label><br>
+                </div>
+            <input type="checkbox" id="5.no" name="20_prc" value="no">
+            <label for="5.no">No</label><br>
+        </div>
+        <br>
+        
+        <div id="6">
+            <p>6.  Do you agree with the following statement?</p>
+            <div class="block_vid_1">
+                <p>The symptoms indicated on this exam are severe enough to impact the veterans ability<br>
+                    to work.</p>
+            <input type="checkbox" id="6.yes" name="impact_ability" value="yes">
+            <label for="6.yes">Yes</label><br>
+           
+            <input type="checkbox" id="6.no" name="impact_ability" value="no">
+            <label for="6.no">No</label><br>
+        </div>
+        </div>
+        
+        <br>
+        <button type="submit"  class="knopka">Submit</button>
+    </form>
+</div>
